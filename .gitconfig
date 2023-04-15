@@ -1,5 +1,17 @@
 [init]
-	defaultBranch = main
+defaultBranch = main
 [user]
-	email = spidax1881@gmail.com
-	name = xadips
+email = spidax1881@gmail.com
+name = xadips
+[core]
+editor = vim
+[color]
+ui = auto
+[remote "origin"]
+push = HEAD
+[color]
+branch = auto
+diff = auto
+status = auto
+[pull]
+rebase = true

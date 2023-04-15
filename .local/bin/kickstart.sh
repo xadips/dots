@@ -10,15 +10,13 @@
 # UEFI setup:
 #
 # - Set boot mode to UEFI, disable Legacy mode entirely.
-# - Temporarily disable Secure Boot.
-# - Make sure a strong UEFI administrator password is set.
-# - Delete preloaded OEM keys for Secure Boot, allow custom ones.
+# - Disable Secure Boot.
 # - Set SATA operation to AHCI mode.
 #
 # Run installation:
 #
 # - Connect to wifi via: `# iwctl station wlan0 connect WIFI-NETWORK`
-# - Run: `# bash <(curl -sL https://git.io/maximbaz-install)`
+# - Run: `# bash <(curl -sL https://raw.githubusercontent.com/xadips/dots/main/.local/bin/kickstart.sh)`
 
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
@@ -71,7 +69,7 @@ fi
 echo -e "\n### Setting up clock"
 timedatectl set-ntp true
 hwclock --systohc --utc
-reflector -c Lithuania -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+reflector -c Lithuania,Latvia,Poland -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 echo -e "\n### Installing additional tools"
 pacman -Sy --noconfirm --needed git terminus-font dialog wget
@@ -96,7 +94,7 @@ noyes=("Yes" "The System is RAID1" "No" "Single drive setup")
 raid=$(get_choice "Drive status" "Do you want RAID1 for 2 drives?" "${noyes[@]}") || exit 1
 
 devicelist=$(lsblk -dplnx size -o name,size | grep -Ev "boot|rpmb|loop" | tac | tr '\n' ' ')
-read -r -a devicelist <<< $devicelist
+read -r -a devicelist <<<$devicelist
 
 fdevice=$(get_choice "Installation" "Select installation disk" "${devicelist[@]}") || exit 1
 [[ "$raid" == "Yes" ]] && sdevice=$(get_choice "Installation" "Select secoond RAID1 device" "${devicelist[@]}") || exit 1
@@ -104,7 +102,7 @@ fdevice=$(get_choice "Installation" "Select installation disk" "${devicelist[@]}
 clear
 
 echo -e "\n### Setting up partitions"
-umount -R /mnt 2> /dev/null || true
+umount -R /mnt 2>/dev/null || true
 
 lsblk -plnx size -o name "${fdevice}" | xargs -n1 wipefs --all
 [[ "$raid" == "Yes" ]] && lsblk -plnx size -o name "${sdevice}" | xargs -n1 wipefs --all
@@ -118,9 +116,6 @@ fpart_root="$(ls ${fdevice}* | grep -E "^${fdevice}p?2$")"
 
 [[ "$raid" == "Yes" ]] && spart_boot="$(ls ${sdevice}* | grep -E "^${sdevice}p?1$")"
 [[ "$raid" == "Yes" ]] && spart_root="$(ls ${sdevice}* | grep -E "^${sdevice}p?2$")"
-
-
-[[ "$raid" == "Yes" ]] &&
 
 echo -e "\n### Formatting partitions"
 mkfs.vfat -n "EFI" -F 32 "${fpart_boot}"
@@ -137,90 +132,46 @@ btrfs su cr /mnt/@var_log
 umount /mnt
 
 mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@ "${fpart_root}" /mnt
-
 mkdir -p /mnt/{boot/efi,home,.snapshots,var/log}
 
-echo -e "\n### Configuring custom repo"
-mkdir "/mnt/var/cache/pacman/${user}-local"
-march="$(uname -m)"
-
-if [[ "${user}" == "maximbaz" && "${hostname}" == "home-"* ]]; then
-    wget -m -nH -np -q --show-progress --progress=bar:force --reject='index.html*' --cut-dirs=3 -P "/mnt/var/cache/pacman/${user}-local" "https://pkgbuild.com/~maximbaz/repo/${march}"
-    rename -- 'maximbaz.' "${user}-local." "/mnt/var/cache/pacman/${user}-local"/*
-else
-    repo-add "/mnt/var/cache/pacman/${user}-local/${user}-local.db.tar"
-fi
-
-if ! grep "${user}" /etc/pacman.conf > /dev/null; then
-    cat >> /etc/pacman.conf << EOF
-[${user}-local]
-Server = file:///mnt/var/cache/pacman/${user}-local
-[maximbaz]
-Server = https://pkgbuild.com/~maximbaz/repo/${march}
-[options]
-CacheDir = /mnt/var/cache/pacman/pkg
-CacheDir = /mnt/var/cache/pacman/${user}-local
-EOF
-fi
+mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@home "${fpart_root}" /mnt/home
+mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@snapshots "${fpart_root}" /mnt/.snapshots
+mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "${fpart_root}" /mnt/var/log
+mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt maximbaz-base maximbaz-$(uname -m)
+pacstrap -i /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools snapper-gui hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook
 
-echo -e "\n### Generating base config files"
-ln -sfT dash /mnt/usr/bin/sh
-
-cryptsetup luksHeaderBackup "${luks_header_device}" --header-backup-file /tmp/header.img
-luks_header_size="$(stat -c '%s' /tmp/header.img)"
-rm -f /tmp/header.img
-
-echo "cryptdevice=PARTLABEL=primary:luks:allow-discards cryptheader=LABEL=luks:0:$luks_header_size root=LABEL=btrfs rw rootflags=subvol=root quiet mem_sleep_default=deep" > /mnt/etc/kernel/cmdline
-
-echo "FONT=$font" > /mnt/etc/vconsole.conf
-genfstab -L /mnt >> /mnt/etc/fstab
-echo "${hostname}" > /mnt/etc/hostname
-echo "en_US.UTF-8 UTF-8" >> /mnt/etc/locale.gen
-echo "en_DK.UTF-8 UTF-8" >> /mnt/etc/locale.gen
-ln -sf /usr/share/zoneinfo/Europe/Copenhagen /mnt/etc/localtime
+echo "FONT=$font" >/mnt/etc/vconsole.conf
+genfstab -L /mnt >>/mnt/etc/fstab
+echo "${hostname}" >/mnt/etc/hostname
+echo "en_US.UTF-8 UTF-8" >>/mnt/etc/locale.gen
+ln -sf /usr/share/zoneinfo/Europe/Vilnius /mnt/etc/localtime
 arch-chroot /mnt locale-gen
-cat << EOF > /mnt/etc/mkinitcpio.conf
+cat <<EOF >/mnt/etc/mkinitcpio.conf
 MODULES=()
-BINARIES=()
+BINARIES=(setfont)
 FILES=()
-HOOKS=(base consolefont udev autodetect modconf block encrypt-dh filesystems keyboard)
+HOOKS=(base consolefont udev autodetect kms modconf block filesystems keyboard grub-btrfs-overlayfs)
 EOF
-arch-chroot /mnt mkinitcpio -p linux
-arch-chroot /mnt arch-secure-boot initial-setup
-
-echo -e "\n### Configuring swap file"
-btrfs filesystem mkswapfile --size 4G /mnt/swap/swapfile
-echo "/swap/swapfile none swap defaults 0 0" >> /mnt/etc/fstab
+arch-chroot /mnt mkinitcpio -p linux-zen
+arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+[[ "$raid" == "Yes" ]] && dd if="${fpart_boot}" of="${spart_boot}" && arch-chroot /mnt efibootmgr --create --disk "${sdevice}" --part 1 -w --label GRUB2 --loader '\EFI\GRUB\grubx64.efi'
 
 echo -e "\n### Creating user"
-arch-chroot /mnt useradd -m -s /usr/bin/zsh "$user"
-for group in wheel network nzbget video input; do
-    arch-chroot /mnt groupadd -rf "$group"
-    arch-chroot /mnt gpasswd -a "$user" "$group"
-done
+arch-chroot /mnt useradd -mG wheel,network,video,input -s /usr/bin/zsh "$user"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 echo "$user:$password" | arch-chroot /mnt chpasswd
-arch-chroot /mnt passwd -dl root
+echo '%wheel ALL=(ALL) ALL' | sudo EDITOR='tee -a' visudo
 
-echo -e "\n### Setting permissions on the custom repo"
-arch-chroot /mnt chown -R "$user:$user" "/var/cache/pacman/${user}-local/"
-
-if [ "${user}" = "maximbaz" ]; then
+if [ "${user}" = "spidax" ]; then
     echo -e "\n### Cloning dotfiles"
-    arch-chroot /mnt sudo -u $user bash -c 'git clone --recursive https://github.com/maximbaz/dotfiles.git ~/.dotfiles'
+    arch-chroot /mnt sudo -u $user bash -c 'yadm clone --no-bootstrap https://github.com/xadips/dots.git ~/.dotfiles'
+    arch-chroot /mnt systemctl enable NetworkManager
+    arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
 
-    echo -e "\n### Running initial setup"
-    arch-chroot /mnt /home/$user/.dotfiles/setup-system.sh
-    arch-chroot /mnt sudo -u $user /home/$user/.dotfiles/setup-user.sh
-    arch-chroot /mnt sudo -u $user zsh -ic true
-
-    echo -e "\n### DONE - reboot and re-run both ~/.dotfiles/setup-*.sh scripts"
-else
-    echo -e "\n### DONE - read POST_INSTALL.md for tips on configuring your setup"
+    echo -e "\n### DONE - reboot and yadm bootstrap"
 fi
 
-echo -e "\n### Reboot now, and after power off remember to unplug the installation USB"
 umount -R /mnt
