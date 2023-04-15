@@ -63,9 +63,6 @@ echo "============================"
 echo "Setting up /usr/local/bin..."
 echo "============================"
 
-copy "usr/local/bin/checkluksheader"
-copy "usr/local/bin/backup-repo"
-
 echo ""
 echo "=========================="
 echo "Setting up /etc configs..."
@@ -88,6 +85,7 @@ sysctl --system >/dev/null
 
 systemctl daemon-reload
 systemctl_enable_start "bluetooth.service"
+systemctl_enable_start "cups.service"
 systemctl_enable_start "btrfs-scrub@-.timer"
 systemctl_enable_start "btrfs-scrub@home.timer"
 systemctl_enable_start "btrfs-scrub@.snapshots.timer"
@@ -105,8 +103,3 @@ fi
 
 echo "Configuring NTP"
 timedatectl set-ntp true
-
-echo "Configuring aurutils"
-mkdir -p /etc/aurutils
-ln -sf /etc/pacman.conf "/etc/aurutils/pacman-maximbaz-local.conf"
-ln -sf /etc/pacman.conf "/etc/aurutils/pacman-$(uname -m).conf"

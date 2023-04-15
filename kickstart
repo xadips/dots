@@ -16,7 +16,7 @@
 # Run installation:
 #
 # - Connect to wifi via: `# iwctl station wlan0 connect WIFI-NETWORK`
-# - Run: `# bash <(curl -sL https://raw.githubusercontent.com/xadips/dots/main/.local/bin/kickstart.sh)`
+# - Run: `# bash <(curl -sL https://raw.githubusercontent.com/xadips/dots/main/kickstart)`
 
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
@@ -141,7 +141,7 @@ mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook terminus-font
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel zsh inotify-tools yadm terminus-font
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
@@ -174,7 +174,7 @@ if [ "${user}" = "spidax" ]; then
     arch-chroot /mnt systemctl enable NetworkManager
     arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
 
-    echo -e "\n### DONE - reboot and yadm bootstrap"
+    echo -e "\n### DONE - reboot and yadm decrypt then bootstrap"
 fi
 
 umount -R /mnt
