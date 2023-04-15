@@ -97,8 +97,8 @@ raid=$(get_choice "Drive status" "Do you want RAID1 for 2 drives?" "${noyes[@]}"
 devicelist=$(lsblk -dplnx size -o name,size | grep -Ev "boot|rpmb|loop" | tac | tr '\n' ' ')
 read -r -a devicelist <<<$devicelist
 
-fdevice=$(get_choice "Installation" "Select installation disk" "${devicelist[@]}") || exit 1
-[[ "$raid" == "Yes" ]] && sdevice=$(get_choice "Installation" "Select secoond RAID1 device" "${devicelist[@]}") || exit 1
+fdevice=$(get_choice "Installation" "Select first drive" "${devicelist[@]}") || exit 1
+[[ "$raid" == "Yes" ]] && sdevice=$(get_choice "Installation" "Select second drive" "${devicelist[@]}") || exit 1
 
 clear
 
@@ -107,9 +107,9 @@ umount -R /mnt 2>/dev/null || true
 
 lsblk -plnx size -o name "${fdevice}" | xargs -n1 wipefs --all
 [[ "$raid" == "Yes" ]] && lsblk -plnx size -o name "${sdevice}" | xargs -n1 wipefs --all
-sgdisk --clear "${fdevice}" --new 1:0:+500Mib --typecode 1:ef00 "{fdevice}" --new 2:0:0 "${fdevice}"
+sgdisk --clear "${fdevice}" --new 1:0:+100Mib --typecode 1:ef00 "{fdevice}" --new 2:0:0 "${fdevice}"
 sgdisk --change-name-name=1:ESP --change-name=2:primary "${fdevice}"
-[[ "$raid" == "Yes" ]] && sgdisk --clear "${sdevice}" --new 1:0:+500Mib --typecode 1:ef00 "{sdevice}" --new 2:0:0 "${sdevice}"
+[[ "$raid" == "Yes" ]] && sgdisk --clear "${sdevice}" --new 1:0:+100Mib --typecode 1:ef00 "{sdevice}" --new 2:0:0 "${sdevice}"
 [[ "$raid" == "Yes" ]] && sgdisk --change-name-name=1:ESP --change-name=2:primary "${sdevice}"
 
 fpart_boot="$(ls ${fdevice}* | grep -E "^${fdevice}p?1$")"
@@ -122,7 +122,7 @@ echo -e "\n### Formatting partitions"
 mkfs.vfat -n "EFI" -F 32 "${fpart_boot}"
 [[ "$raid" == "Yes" ]] && mkfs.vfat -n "EFI" -F 32 "${spart_boot}"
 
-[[ "$raid" == "Yes" ]] && mkfs.btrfs -m raid1 -d raid1 "{$fpart_root}" "${spart_root}" || mkfs.btrfs -L btrfs -m single -d single "${fpart_root}"
+[[ "$raid" == "Yes" ]] && mkfs.btrfs -m raid1 -d raid1 "{$fpart_root}" "${spart_root}" -f || mkfs.btrfs -L btrfs -m single -d single "${fpart_root}" -f
 
 echo -e "\n### Setting up BTRFS subvolumes"
 mount "${fpart_root}" /mnt
@@ -140,10 +140,11 @@ mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@snapshots
 mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "${fpart_root}" /mnt/var/log
 mount "${fpart_boot}" /mnt/boot/efi
 
+echo "FONT=$font" >/mnt/etc/vconsole.conf
+
 echo -e "\n### Installing packages"
 pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook
 
-echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
 echo "${hostname}" >/mnt/etc/hostname
 echo "en_US.UTF-8 UTF-8" >>/mnt/etc/locale.gen
