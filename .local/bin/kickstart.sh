@@ -166,7 +166,7 @@ echo -e "\n### Creating user"
 arch-chroot /mnt useradd -mG wheel,network,video,input -s /usr/bin/zsh "$user"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 echo "$user:$password" | arch-chroot /mnt chpasswd
-echo "$user ALL=(ALL) ALL" | sudo EDITOR='tee -a' visudo
+echo "$user ALL=(ALL) ALL" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"
 
 if [ "${user}" = "spidax" ]; then
     echo -e "\n### Cloning dotfiles"
