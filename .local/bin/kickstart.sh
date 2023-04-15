@@ -167,7 +167,7 @@ echo '%wheel ALL=(ALL) ALL' | sudo EDITOR='tee -a' visudo
 
 if [ "${user}" = "spidax" ]; then
     echo -e "\n### Cloning dotfiles"
-    arch-chroot /mnt sudo -u $user bash -c 'yadm clone --no-bootstrap https://github.com/xadips/dots.git ~/.dotfiles'
+    arch-chroot /mnt sudo -u $user bash -c 'git clone https://github.com/xadips/dots.git ~/.dotfiles'
     arch-chroot /mnt systemctl enable NetworkManager
     arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
 
