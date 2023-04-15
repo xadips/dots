@@ -140,7 +140,7 @@ mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools snapper-gui hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook
+pacstrap -i /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
