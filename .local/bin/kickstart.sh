@@ -69,6 +69,7 @@ fi
 echo -e "\n### Setting up clock"
 timedatectl set-ntp true
 hwclock --systohc --utc
+echo -e "\n### Setting mirrors"
 reflector -c Lithuania,Latvia,Poland -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 echo -e "\n### Installing additional tools"
@@ -140,7 +141,7 @@ mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap -i /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager network-manager-applet dialog wpa_supplicant mtools dosfstools git reflector snapper bluez bluez-utils cups btrfs-progs base-devel xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa wireplumber easyeffects inetutils libpulse mesa zsh zsh-completions inotify-tools hyprland yadm hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
@@ -148,6 +149,8 @@ echo "${hostname}" >/mnt/etc/hostname
 echo "en_US.UTF-8 UTF-8" >>/mnt/etc/locale.gen
 ln -sf /usr/share/zoneinfo/Europe/Vilnius /mnt/etc/localtime
 arch-chroot /mnt locale-gen
+
+echo -e "\n### Setting up initramfs and boot"
 cat <<EOF >/mnt/etc/mkinitcpio.conf
 MODULES=()
 BINARIES=(setfont)
@@ -163,7 +166,7 @@ echo -e "\n### Creating user"
 arch-chroot /mnt useradd -mG wheel,network,video,input -s /usr/bin/zsh "$user"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 echo "$user:$password" | arch-chroot /mnt chpasswd
-echo '%wheel ALL=(ALL) ALL' | sudo EDITOR='tee -a' visudo
+echo "$user ALL=(ALL) ALL" | sudo EDITOR='tee -a' visudo
 
 if [ "${user}" = "spidax" ]; then
     echo -e "\n### Cloning dotfiles"
