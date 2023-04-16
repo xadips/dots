@@ -21,7 +21,7 @@ systemctl_enable_start() {
 }
 
 # Installing missing Arch repo packages
-sudo pacman -Syu --noconfirm --needed snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook dunst ripgrep bat yt-dlp mpv gnupg firefox rofi-lbonn-wayland polkit-kde-agent
+sudo pacman -Syu --noconfirm --needed snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook dunst ripgrep bat yt-dlp mpv gnupg firefox polkit-kde-agent
 
 # Setting up ssh and gpg keys
 yadm decrypt
@@ -39,7 +39,7 @@ yadm remote set-url origin git@github.com:xadips/dots.git
 git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si --noconfirm --needed
-paru -S --noconfirm --skipreview ttf-blex-nerd-font-git snapper-rollback
+paru -S --noconfirm --skipreview ttf-blex-nerd-font-git snapper-rollback rofi-lbonn-wayland
 cd ..
 rm -rf paru-bin
 sudo bash -c "/home/$user/init.sh"
