@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-exec 2> >(while read line; do echo -e "\e[01;31m$line\e[0m"; done)
 user="spidax"
 
 GPG_KEY_ID="C30D3E7D1257494C"
@@ -11,22 +10,6 @@ dotfiles_dir="$(
     pwd
 )"
 cd "$dotfiles_dir"
-
-link() {
-    orig_file="$dotfiles_dir/$1"
-    if [ -n "$2" ]; then
-        dest_file="$HOME/$2"
-    else
-        dest_file="$HOME/$1"
-    fi
-
-    mkdir -p "$(dirname "$orig_file")"
-    mkdir -p "$(dirname "$dest_file")"
-
-    rm -rf "$dest_file"
-    ln -s "$orig_file" "$dest_file"
-    echo "$dest_file -> $orig_file"
-}
 
 is_chroot() {
     ! cmp -s /proc/1/mountinfo /proc/self/mountinfo
@@ -38,12 +21,12 @@ systemctl_enable_start() {
 }
 
 # Installing missing Arch repo packages
-sudo pacman -Syu --noconfirm network-manager-applet snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook ripgrep bat yt-dlp mpv gnupg
+sudo pacman -Syu --noconfirm --needed network-manager-applet snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook ripgrep bat yt-dlp mpv gnupg
 
 # Setting up ssh and gpg keys
 yadm decrypt
-chmod 600 .ssh/id_rsa
-chmod 600 .ssh/id_rsa.pub
+chmod 600 ~/.ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa.pub
 
 gpg --import-options restore,keep-ownertrust --import ~/.gnupg/private.gpg
 find "$HOME/.gnupg" -type f -not -path "*#*" -exec chmod 600 {} \;
@@ -55,7 +38,7 @@ yadm remote set-url origin git@github.com:xadips/dots.git
 
 git clone https://aur.archlinux.org/paru.git
 cd paru
-makepkg -si
+makepkg -si --noconfirm --needed
 paru -S --noconfirm --skipreview paru-bin ttf-blex-nerd-font-git
 cd ..
 rm -rf paru
