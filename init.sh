@@ -82,7 +82,8 @@ echo "================================="
 echo "Enabling and starting services..."
 echo "================================="
 
-sysctl --system >/dev/null
+# Kernel?
+# sysctl --system >/dev/null
 
 systemctl daemon-reload
 systemctl_enable_start "bluetooth.service"
@@ -94,7 +95,7 @@ systemctl_enable_start "linux-modules-cleanup.service"
 systemctl_enable_start "reflector.service"
 systemctl_enable_start "snapper-cleanup.timer"
 systemctl_enable_start "snapper-timeline.timer"
-systemctl_enable_start "grub-btrfsd.timer"
+systemctl_enable_start "grub-btrfsd.service"
 
 if is_chroot; then
     echo >&2 "=== Running in chroot, skipping dns setup..."
