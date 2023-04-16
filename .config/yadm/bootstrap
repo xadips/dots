@@ -5,11 +5,11 @@ user="spidax"
 
 GPG_KEY_ID="C30D3E7D1257494C"
 
-dotfiles_dir="$(
-    cd "$(dirname "$0")"
-    pwd
-)"
-cd "$dotfiles_dir"
+# dotfiles_dir="$(
+#     cd "$(dirname "$0")"
+#     pwd
+# )"
+# cd "$dotfiles_dir"
 
 is_chroot() {
     ! cmp -s /proc/1/mountinfo /proc/self/mountinfo
