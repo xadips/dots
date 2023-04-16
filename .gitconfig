@@ -2,7 +2,8 @@
 defaultBranch = main
 [user]
 	email = 29689012+xadips@users.noreply.github.com
-name = xadips
+	name = xadips
+	signingkey = C30D3E7D1257494C
 [core]
 editor = vim
 [color]
@@ -15,3 +16,5 @@ diff = auto
 status = auto
 [pull]
 rebase = true
+[commit]
+	gpgsign = true
