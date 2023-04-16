@@ -3,16 +3,8 @@
 set -e
 exec 2> >(while read line; do echo -e "\e[01;31m$line\e[0m"; done)
 user="spidax"
-sudo pacman -Syu --noconfirm network-manager-applet snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook ripgrep bat yt-dlp mpv gnupg
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-paru -S --noconfirm --skipreview paru-bin ttf-blex-nerd-font-git
-cd ..
-rm -rf paru
-sudo bash -c "/home/$user/dots/.local/bin/init.sh"
 
-MY_PGP_KEY_ID="56C3E775E72B0C8B1C0C1BD0B5DB77409B11B601"
+GPG_KEY_ID="C30D3E7D1257494C"
 
 dotfiles_dir="$(
     cd "$(dirname "$0")"
@@ -45,37 +37,33 @@ systemctl_enable_start() {
     systemctl --user enable --now "$1"
 }
 
+# Installing missing Arch repo packages
+sudo pacman -Syu --noconfirm network-manager-applet snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook ripgrep bat yt-dlp mpv gnupg
+
+# Setting up ssh and gpg keys
+yadm decrypt
+chmod 600 .ssh/id_rsa
+chmod 600 .ssh/id_rsa.pub
+
+gpg --import-options restore,keep-ownertrust --import ~/.gnupg/private.gpg
+find "$HOME/.gnupg" -type f -not -path "*#*" -exec chmod 600 {} \;
+find "$HOME/.gnupg" -type d -exec chmod 700 {} \;
+
+eval $(keychain --agents 'ssh,gpg' --eval --quiet --noask id_rsa C30D3E7D1257494C)
+
+yadm remote set-url origin git@github.com:xadips/dots.git
+
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+paru -S --noconfirm --skipreview paru-bin ttf-blex-nerd-font-git
+cd ..
+rm -rf paru
+sudo bash -c "/home/$user/dots/.local/bin/init.sh"
+
 echo "==========================="
 echo "Setting up user dotfiles..."
 echo "==========================="
-
-link ".gnupg/$(cut -d'-' -f1 /etc/hostname)-gpg.conf" ".gnupg/gpg.conf"
-link ".gnupg/gpg-agent.conf"
-link ".ignore"
-link ".zshenv"
-
-link ".mozilla/firefox/profile/user.js"
-link ".mozilla/firefox/profile/chrome"
-
-link ".config/bat"
-link ".config/kitty"
-link ".config/mimeapps.list"
-link ".config/zsh"
-link ".config/mpv"
-link ".config/swaylock"
-link ".config/swaync"
-link ".config/udiskie"
-link ".config/user-tmpfiles.d"
-link ".config/vimiv"
-link ".config/waybar"
-link ".config/wldash"
-link ".config/xdg-desktop-portal-wlr"
-link ".config/xkb"
-link ".config/xplr"
-link ".config/zathura"
-
-link ".local/bin"
-link ".local/share/applications"
 
 if is_chroot; then
     echo >&2 "=== Running in chroot, skipping user services..."
@@ -91,30 +79,15 @@ echo "======================================="
 echo "Finishing various user configuration..."
 echo "======================================="
 
-echo "Configuring MIME types"
-file --compile --magic-file "$HOME/.magic"
-
-if ! gpg -k | grep "$MY_PGP_KEY_ID" >/dev/null; then
-    echo "Importing my public PGP key"
-    curl -s https://maximbaz.com/pgp_keys.asc | gpg --import
-    echo "5\ny\n" | gpg --command-fd 0 --no-tty --batch --edit-key "$MY_PGP_KEY_ID" trust
-fi
-
-find "$HOME/.gnupg" -type f -not -path "*#*" -exec chmod 600 {} \;
-find "$HOME/.gnupg" -type d -exec chmod 700 {} \;
-
 if is_chroot; then
     echo >&2 "=== Running in chroot, skipping GTK file chooser dialog configuration..."
 else
-    echo "Configuring GTK file chooser dialog"
-    gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+    #echo "Configuring GTK file chooser dialog"
+    #gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 fi
 
-echo "Ignoring further changes to often changing config"
-git update-index --assume-unchanged ".config/transmission/settings.json"
-
-echo "Configure repo-local git settings"
-git config user.email "git@maximbaz.com"
-git config user.signingkey "04D7A219B0ABE4C2B62A5E654A2B758631E1FD91"
-git config commit.gpgsign true
-git remote set-url origin "git@github.com:maximbaz/dotfiles.git"
+echo "Configure git settings"
+git config --global user.email "29689012+xadips@users.noreply.github.com"
+git config --global user.name "xadips"
+git config --global user.signingkey "$GPG_KEY_ID"
+git config --global commit.gpgsign true

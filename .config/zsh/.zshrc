@@ -49,7 +49,7 @@ plugins=()
 # | SCRIPTS |
 # +---------+
 
-eval $(keychain --eval --quiet ~/.ssh/id_rsa)
+eval $(keychain --agents 'ssh,gpg' --eval --quiet --noask id_rsa C30D3E7D1257494C)
 
 # +------------+
 # | COMPLETION |
