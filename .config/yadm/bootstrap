@@ -36,10 +36,10 @@ eval $(keychain --agents 'ssh,gpg' --eval --quiet --noask id_rsa C30D3E7D1257494
 
 yadm remote set-url origin git@github.com:xadips/dots.git
 
-git clone https://aur.archlinux.org/paru.git
+git clone https://aur.archlinux.org/paru-bin.git
 cd paru
 makepkg -si --noconfirm --needed
-yes | paru -S --skipreview paru-bin ttf-blex-nerd-font-git
+paru -S --noconfirm --skipreview ttf-blex-nerd-font-git
 cd ..
 rm -rf paru
 sudo bash -c "/home/$user/dots/.local/bin/init.sh"
