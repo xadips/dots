@@ -72,6 +72,7 @@ copy "etc/snapper/configs/root" 640 etc/snapper/configs/root
 copy "etc/conf.d/snapper" 644 etc/conf.d/snapper
 copy "etc/pacman.conf" 644 "etc/pacman.conf"
 # copy "etc/pacman.d/hooks"
+copy "etc/systemd/system/getty@tty1.service.d/activate-numlock.conf"
 copy "etc/systemd/system/getty@tty1.service.d/override.conf"
 copy "etc/xdg/reflector/reflector.conf"
 
