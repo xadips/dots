@@ -39,7 +39,7 @@ yadm remote set-url origin git@github.com:xadips/dots.git
 git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si --noconfirm --needed
-paru -S --noconfirm --skipreview ttf-blex-nerd-font-git
+paru -S --noconfirm --skipreview ttf-blex-nerd-font-git snapper-rollback
 cd ..
 rm -rf paru-bin
 sudo bash -c "/home/$user/init.sh"
@@ -48,14 +48,18 @@ echo "==========================="
 echo "Setting up user dotfiles..."
 echo "==========================="
 
-# if is_chroot; then
-#     echo >&2 "=== Running in chroot, skipping user services..."
-# else
-#     echo ""
-#     echo "================================="
-#     echo "Enabling and starting services..."
-#     echo "================================="
-# fi
+if is_chroot; then
+    echo >&2 "=== Running in chroot, skipping user services..."
+else
+    echo ""
+    echo "================================="
+    echo "Enabling and starting services..."
+    echo "================================="
+    systemctl --user daemon-reload
+    systemctl_enable_start "pipewire.service"
+    systemctl_enable_start "pipewire-pulse.service"
+    systemctl_enable_start "wireplumber.service"
+fi
 
 echo ""
 echo "======================================="
