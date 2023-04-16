@@ -21,7 +21,7 @@ systemctl_enable_start() {
 }
 
 # Installing missing Arch repo packages
-sudo pacman -Syu --noconfirm --needed network-manager-applet snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook ripgrep bat yt-dlp mpv gnupg
+sudo pacman -Syu --noconfirm --needed network-manager-applet snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland mako xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook ripgrep bat yt-dlp mpv gnupg firefox
 
 # Setting up ssh and gpg keys
 yadm decrypt
