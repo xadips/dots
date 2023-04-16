@@ -32,16 +32,16 @@ gpg --import-options restore,keep-ownertrust --import ~/.gnupg/private.gpg
 find "$HOME/.gnupg" -type f -not -path "*#*" -exec chmod 600 {} \;
 find "$HOME/.gnupg" -type d -exec chmod 700 {} \;
 
-eval $(keychain --agents 'ssh,gpg' --eval --quiet --noask id_rsa C30D3E7D1257494C)
+eval $(keychain --agents 'ssh,gpg' --eval --quiet id_rsa C30D3E7D1257494C)
 
 yadm remote set-url origin git@github.com:xadips/dots.git
 
 git clone https://aur.archlinux.org/paru-bin.git
-cd paru
+cd paru-bin
 makepkg -si --noconfirm --needed
 paru -S --noconfirm --skipreview ttf-blex-nerd-font-git
 cd ..
-rm -rf paru
+rm -rf paru-bin
 sudo bash -c "/home/$user/dots/.local/bin/init.sh"
 
 echo "==========================="
