@@ -85,9 +85,3 @@ else
     #echo "Configuring GTK file chooser dialog"
     #gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 fi
-
-echo "Configure git settings"
-git config --global user.email "29689012+xadips@users.noreply.github.com"
-git config --global user.name "xadips"
-git config --global user.signingkey "$GPG_KEY_ID"
-git config --global commit.gpgsign true
