@@ -14,9 +14,6 @@ setopt CORRECT       # Spelling correction
 setopt CDABLE_VARS   # Change directory to a path stored in a variable.
 setopt EXTENDED_GLOB # Use extended globbing syntax.
 
-autoload -Uz bd
-bd
-
 # +---------+
 # | HISTORY |
 # +---------+
@@ -52,7 +49,6 @@ plugins=()
 # | SCRIPTS |
 # +---------+
 
-source $ZDOTDIR/scripts.zsh # Scripts
 eval $(keychain --eval --quiet ~/.ssh/id_rsa)
 
 # +------------+
