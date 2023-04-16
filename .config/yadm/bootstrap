@@ -39,7 +39,7 @@ yadm remote set-url origin git@github.com:xadips/dots.git
 git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si --noconfirm --needed
-paru -S --noconfirm --skipreview ttf-blex-nerd-font-git snapper-rollback rofi-lbonn-wayland
+paru -S --noconfirm --nocheck --skipreview ttf-blex-nerd-font-git snapper-rollback rofi-lbonn-wayland
 cd ..
 rm -rf paru-bin
 sudo bash -c "/home/$user/init.sh"
