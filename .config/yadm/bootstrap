@@ -42,7 +42,7 @@ makepkg -si --noconfirm --needed
 paru -S --noconfirm --skipreview ttf-blex-nerd-font-git
 cd ..
 rm -rf paru-bin
-sudo bash -c "/home/$user/dots/.local/bin/init.sh"
+sudo bash -c "/home/$user/init.sh"
 
 echo "==========================="
 echo "Setting up user dotfiles..."
