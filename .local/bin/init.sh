@@ -2,7 +2,7 @@
 
 set -e
 exec 2> >(while read line; do echo -e "\e[01;31m$line\e[0m"; done)
-
+user="spidax"
 script_name="$(basename "$0")"
 dotfiles_dir="$(
     cd "$(dirname "$0")"
@@ -38,7 +38,7 @@ copy() {
     if [ -z "$reverse" ]; then
         [ -n "$2" ] && chmod "$2" "$dest_file"
     else
-        chown -R maximbaz "$dest_file"
+        chown -R $user "$dest_file"
     fi
     echo "$dest_file <= $orig_file"
 }
@@ -68,9 +68,10 @@ echo "=========================="
 echo "Setting up /etc configs..."
 echo "=========================="
 
-copy "etc/conf.d/snapper"
+copy "etc/configs/snapper/root" 640 etc/configs/snapper/root
+copy "etc/conf.d/snapper" 644 etc/conf.d/snapper
 copy "etc/pacman.conf" 644 "etc/pacman.conf"
-copy "etc/pacman.d/hooks"
+# copy "etc/pacman.d/hooks"
 copy "etc/systemd/system/getty@tty1.service.d/override.conf"
 copy "etc/xdg/reflector/reflector.conf"
 
@@ -92,6 +93,7 @@ systemctl_enable_start "btrfs-scrub@.snapshots.timer"
 systemctl_enable_start "linux-modules-cleanup.service"
 systemctl_enable_start "reflector.service"
 systemctl_enable_start "snapper-cleanup.timer"
+systemctl_enable_start "snapper-timeline.timer"
 systemctl_enable_start "grub-btrfsd.timer"
 
 if is_chroot; then
