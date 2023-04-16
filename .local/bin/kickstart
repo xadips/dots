@@ -176,6 +176,8 @@ if [ "${user}" = "spidax" ]; then
     #arch-chroot /mnt sudo -u $user bash -c 'yadm clone --no-bootstrap https://github.com/xadips/dots.git'
     arch-chroot /mnt systemctl enable NetworkManager
     arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
+    arch-chroot /mnt sudo -u $user bash -c 'touch ~/.zshrc'
+    arch-chroot /mnt sudo -u $user bash -c 'echo "yadm clone https://github.com/xadips/dots.git" >> ~/.zshrc'
 
     echo -e "\n### DONE - reboot and yadm decrypt then bootstrap"
 fi

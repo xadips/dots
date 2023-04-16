@@ -68,7 +68,7 @@ echo "=========================="
 echo "Setting up /etc configs..."
 echo "=========================="
 
-copy "etc/configs/snapper/root" 640 etc/configs/snapper/root
+copy "etc/snapper/configs/root" 640 etc/snapper/configs/root
 copy "etc/conf.d/snapper" 644 etc/conf.d/snapper
 copy "etc/pacman.conf" 644 "etc/pacman.conf"
 # copy "etc/pacman.d/hooks"
