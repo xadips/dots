@@ -1,9 +1,9 @@
 [init]
 defaultBranch = main
 [user]
-	email = 29689012+xadips@users.noreply.github.com
-	name = xadips
-	signingkey = C30D3E7D1257494C
+email = 29689012+xadips@users.noreply.github.com
+name = xadips
+signingkey = C30D3E7D1257494C
 [core]
 editor = vim
 [color]
@@ -17,4 +17,6 @@ status = auto
 [pull]
 rebase = true
 [commit]
-	gpgsign = true
+gpgsign = true
+[gpg]
+program = gpg2
