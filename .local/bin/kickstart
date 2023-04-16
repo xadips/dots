@@ -68,7 +68,6 @@ fi
 
 echo -e "\n### Setting up clock"
 timedatectl set-ntp true
-hwclock --systohc --utc
 echo -e "\n### Setting mirrors"
 reflector -c Lithuania,Latvia,Poland -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
@@ -174,6 +173,7 @@ echo "Defaults pwfeedback" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"
 if [ "${user}" = "spidax" ]; then
     echo -e "\n### Cloning dotfiles"
     #arch-chroot /mnt sudo -u $user bash -c 'yadm clone --no-bootstrap https://github.com/xadips/dots.git'
+    arch-chroot /mnt hwclock --systohc --utc
     arch-chroot /mnt systemctl enable NetworkManager
     arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
 
