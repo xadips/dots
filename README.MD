@@ -22,5 +22,5 @@
 ### Initating kickstart on archiso
 
 ```
-# bash <(curl -sL ks.rvq.lt)
+bash <(curl -sL ks.rvq.lt)
 ```
