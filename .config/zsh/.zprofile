@@ -3,6 +3,8 @@
 [[ "$TTY" == /dev/tty* ]] || return 0
 
 export $(systemctl --user show-environment)
+# VM variable for software rendering
+# export WLR_RENDERER_ALLOW_SOFTWARE=1
 
 if [[ -z $DISPLAY && "$TTY" == "/dev/tty1" ]]; then
     systemd-cat -t hyprland Hyprland
