@@ -61,6 +61,7 @@ else
     systemctl_enable_start "wireplumber.service"
     systemctl_enable_start "polkit-kde.service"
     systemctl_enable_start "udiskie.service"
+    systemctl_enable_start "waybar.service"
 fi
 
 echo ""
