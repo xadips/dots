@@ -1,0 +1,10 @@
+[Unit]
+Description=KDE polkit agent
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/lib/polkit-kde-authentication-agent-1
+
+[Install]
+WantedBy=graphical-session.target

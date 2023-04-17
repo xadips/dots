@@ -39,7 +39,7 @@ yadm remote set-url origin git@github.com:xadips/dots.git
 git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si --noconfirm --needed
-paru -S --noconfirm --nocheck --skipreview ttf-blex-nerd-font-git snapper-rollback rofi-lbonn-wayland
+paru -S --noconfirm --nocheck --skipreview ttf-blex-nerd-font-git snapper-rollback rofi-lbonn-wayland waybar-hyprland
 cd ..
 rm -rf paru-bin
 sudo bash -c "/home/$user/init.sh"
@@ -59,6 +59,7 @@ else
     systemctl_enable_start "pipewire.service"
     systemctl_enable_start "pipewire-pulse.service"
     systemctl_enable_start "wireplumber.service"
+    systemctl_enable_start "polkit-kde.service"
 fi
 
 echo ""
