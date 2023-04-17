@@ -3,7 +3,7 @@ defaultBranch = main
 [user]
 email = 29689012+xadips@users.noreply.github.com
 name = xadips
-signingkey = C30D3E7D1257494C
+signingkey = /home/spidax/.ssh/id_rsa.pub
 [core]
 editor = vim
 [color]
@@ -19,4 +19,4 @@ rebase = true
 [commit]
 gpgsign = true
 [gpg]
-program = gpg2
+format = ssh
