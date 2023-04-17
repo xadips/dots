@@ -170,16 +170,17 @@ echo "$user ALL=(ALL) ALL" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"
 echo "Defaults passwd_timeout=60,timestamp_timeout=60" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"
 echo "Defaults !tty_tickets" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"
 echo "Defaults pwfeedback" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"
+arch-chroot /mnt systemctl enable NetworkManager
+arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
 
 if [ "${user}" = "spidax" ]; then
-    echo -e "\n### Cloning dotfiles"
+    echo -e "\n### Setting up yadm clone for next reboot"
     #arch-chroot /mnt sudo -u $user bash -c 'yadm clone --no-bootstrap https://github.com/xadips/dots.git'
-    arch-chroot /mnt systemctl enable NetworkManager
-    arch-chroot /mnt systemctl enable NetworkManager-wait-online.service
     arch-chroot /mnt sudo -u $user bash -c 'touch ~/.zshrc'
-    arch-chroot /mnt sudo -u $user bash -c 'echo "yadm clone https://github.com/xadips/dots.git" >> ~/.zshrc'
+    arch-chroot /mnt sudo -u $user bash -c 'echo "yadm clone --bootstrap https://github.com/xadips/dots.git" >> ~/.zshrc'
 
-    echo -e "\n### DONE - reboot and yadm decrypt then bootstrap"
+    echo -e "\n### Bootstrap will continue after reboot"
 fi
 
 umount -R /mnt
+echo -e "\n### DONE - You can reboot now"
