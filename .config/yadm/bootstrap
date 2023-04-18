@@ -3,6 +3,9 @@
 set -e
 user="spidax"
 
+# Do not do snapper backups
+export SNAP_PAC_SKIP=y
+
 GPG_KEY_ID="C30D3E7D1257494C"
 
 # dotfiles_dir="$(
