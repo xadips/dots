@@ -38,16 +38,14 @@ eval "$(dircolors -b $ZDOTDIR/dircolors)"
 # +--------+
 # | PROMPT |
 # +--------+
-
-fpath=($ZDOTDIR/prompt $fpath)
-autoload -Uz prompt_purification_setup
-prompt_purification_setup
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 plugins=()
 
-# +---------+
-# | SCRIPTS |
-# +---------+
+# +----------+
+# | KEYCHAIN |
+# +----------+
 
 eval $(keychain --agents 'ssh' --eval --quiet id_rsa)
 
