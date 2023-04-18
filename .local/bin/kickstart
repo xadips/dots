@@ -72,13 +72,6 @@ hwclock --systohc --utc
 echo -e "\n### Setting mirrors"
 reflector -c Lithuania,Latvia,Poland -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
-echo -e "\n### Installing additional tools"
-pacman -Sy --noconfirm --needed git terminus-font dialog wget
-
-clear
-font="ter-716n"
-setfont "$font"
-
 hostname=$(get_input "Hostname" "Enter hostname") || exit 1
 clear
 : ${hostname:?"hostname cannot be empty"}
@@ -101,6 +94,13 @@ fdevice=$(get_choice "Installation" "Select first drive" "${devicelist[@]}") || 
 [[ "$raid" == "Yes" ]] && sdevice=$(get_choice "Installation" "Select second drive" "${devicelist[@]}") || exit 1
 
 clear
+
+echo -e "\n### Installing additional tools"
+pacman -Sy --noconfirm --needed git terminus-font dialog wget
+
+clear
+font="ter-716n"
+setfont "$font"
 
 echo -e "\n### Setting up partitions"
 umount -R /mnt 2>/dev/null || true
