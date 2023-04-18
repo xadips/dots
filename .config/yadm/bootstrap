@@ -42,6 +42,7 @@ makepkg -si --noconfirm --needed
 paru -S --noconfirm --nocheck --skipreview ttf-blex-nerd-font-git snapper-rollback rofi-lbonn-wayland waybar-hyprland vscodium-bin vscodium-bin-marketplace vscodium-bin-features
 cd ..
 rm -rf paru-bin
+bash -c "/home/$user/.config/VSCodium/User/extension-install"
 sudo bash -c "/home/$user/init.sh"
 
 echo "==========================="

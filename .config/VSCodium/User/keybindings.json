@@ -1,0 +1,113 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+      "key": "ctrl+r",
+      "command": "-extension.vim_ctrl+r",
+      "when": "editorTextFocus && vim.active && vim.use<C-r> && !inDebugRepl"
+    },
+    {
+      "key": "ctrl+r",
+      "command": "-workbench.action.reloadWindow",
+      "when": "isDevelopment"
+    },
+    {
+      "key": "ctrl+r",
+      "command": "-workbench.action.openRecent"
+    },
+    {
+      "key": "ctrl+r",
+      "command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
+      "when": "inQuickOpen && inRecentFilesPicker"
+    },
+    {
+      "key": "ctrl+r",
+      "command": "editor.action.startFindReplaceAction",
+      "when": "editorFocus || editorIsOpen"
+    },
+    {
+      "key": "ctrl+h",
+      "command": "-editor.action.startFindReplaceAction",
+      "when": "editorFocus || editorIsOpen"
+    },
+    {
+      "key": "alt+z",
+      "command": "workbench.action.toggleZenMode"
+    },
+    {
+      "key": "ctrl+k z",
+      "command": "-workbench.action.toggleZenMode"
+    },
+    {
+      "key": "ctrl+w",
+      "command": "workbench.action.closeWindow",
+      "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    {
+      "key": "ctrl+w",
+      "command": "-workbench.action.closeWindow",
+      "when": "!editorIsOpen && !multipleEditorGroups"
+    },
+    {
+      "key": "ctrl+h",
+      "command": "workbench.action.focusLeftGroup",
+      "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+      "key": "ctrl+l",
+      "command": "workbench.action.focusRightGroup",
+      "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+      "key": "ctrl+k",
+      "command": "workbench.action.focusAboveGroup",
+      "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+      "key": "ctrl+j",
+      "command": "workbench.action.focusBelowGroup",
+      "when": "editorTextFocus && vim.active && vim.mode != 'Insert'"
+    },
+    {
+      "key": ", t",
+      "command": "workbench.action.toggleSidebarVisibility",
+      "when": "!editorTextFocus"
+    },
+    {
+      "key": "ctrl+b",
+      "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+      "before": ", ",
+      "commands": "workbench.action.closeActiveEditor"
+    },
+    {
+      "key": "ctrl+h",
+      "command": "list.collapse",
+      "when": "listFocus && !inputFocus"
+    },
+    {
+      "key": "ctrl+l",
+      "command": "list.expand",
+      "when": "listFocus && !inputFocus"
+    },
+    {
+      "key": "ctrl+k",
+      "command": "list.focusUp",
+      "when": "listFocus && !inputFocus"
+    },
+    {
+      "key": "ctrl+j",
+      "command": "list.focusDown",
+      "when": "listFocus && !inputFocus"
+    },
+    {
+      "key": "tab",
+      "command": "selectNextSuggestion",
+      "when": "suggestWidgetVisible"
+    },
+    {
+      "key": "`",
+      "command": "selectPrevSuggestion",
+      "when": "suggestWidgetVisible"
+    }
+]
