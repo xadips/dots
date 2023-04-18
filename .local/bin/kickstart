@@ -184,3 +184,8 @@ fi
 
 umount -R /mnt
 echo -e "\n### DONE - You can reboot now"
+
+noyes=("Yes" "Reboot" "No" "Do not reboot")
+rebootask=$(get_choice "Reboot" "Do you want to continue?" "${noyes[@]}") || exit 1
+
+[[ "$rebootask" == "Yes" ]] && reboot

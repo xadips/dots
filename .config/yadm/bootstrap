@@ -79,3 +79,8 @@ echo "======================================="
 #     #echo "Configuring GTK file chooser dialog"
 #     #gsettings set org.gtk.Settings.FileChooser sort-directories-first true
 # fi
+
+echo ""
+echo "======================================="
+echo "Done please reboot..."
+echo "======================================="
