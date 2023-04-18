@@ -18,9 +18,9 @@ is_chroot() {
     ! cmp -s /proc/1/mountinfo /proc/self/mountinfo
 }
 
-systemctl_enable_start() {
-    echo "systemctl --user enable --now "$1""
-    systemctl --user enable --now "$1"
+systemctl_enable() {
+    echo "systemctl --user enable "$1""
+    systemctl --user enable "$1"
 }
 
 # Installing missing Arch repo packages
@@ -60,12 +60,12 @@ else
     echo "Enabling and starting services..."
     echo "================================="
     systemctl --user daemon-reload
-    systemctl_enable_start "pipewire.service"
-    systemctl_enable_start "pipewire-pulse.service"
-    systemctl_enable_start "wireplumber.service"
-    systemctl_enable_start "polkit-kde.service"
-    systemctl_enable_start "udiskie.service"
-    systemctl_enable_start "waybar.service"
+    systemctl_enable "pipewire.service"
+    systemctl_enable "pipewire-pulse.service"
+    systemctl_enable "wireplumber.service"
+    systemctl_enable "polkit-kde.service"
+    systemctl_enable "udiskie.service"
+    systemctl_enable "waybar.service"
 fi
 
 echo ""
