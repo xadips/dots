@@ -27,11 +27,11 @@ systemctl_enable() {
 sudo pacman -Syu --noconfirm --needed snapper easyeffects inetutils xdg-utils xdg-user-dirs pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber mesa zsh-completions zsh-syntax-highlighting hyprland xorg-xwayland xdg-desktop-portal-hyprland thunar polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook dunst ripgrep bat yt-dlp mpv gnupg firefox polkit-kde-agent zathura zathura-pdf-mupdf zathura-djvu udiskie hyprpaper
 
 # Setting up ssh and gpg keys
+# Optional for setting ssh key and git repository to apply changes
 yadm decrypt
 chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa.pub
 
-# Optional for setting ssh key and git repository to apply changes
 gpg --import-options restore,keep-ownertrust --import ~/.gnupg/private.gpg
 find "$HOME/.gnupg" -type f -not -path "*#*" -exec chmod 600 {} \;
 find "$HOME/.gnupg" -type d -exec chmod 700 {} \;
