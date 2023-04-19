@@ -10,7 +10,7 @@
 - Make matching colors in all configs
 - Add dunst config
 - Review missing packages
-- Implement lock screen
+- Write recovery instructions for a drive / package failure
 
 ## Kickstarting
 
