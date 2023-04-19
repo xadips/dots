@@ -75,6 +75,15 @@ copy "etc/pacman.conf" 644 "etc/pacman.conf"
 copy "etc/systemd/system/getty@tty1.service.d/activate-numlock.conf"
 copy "etc/systemd/system/getty@tty1.service.d/override.conf"
 copy "etc/xdg/reflector/reflector.conf"
+copy "etc/plymouth/plymouthd.conf"
+
+echo ""
+echo "==================================="
+echo "Rebuilding initramfs for plymouth..."
+echo "==================================="
+
+mkinitcpio -P
+grub-mkconfig -o /boot/grub/grub.cfg
 
 (("$reverse")) && exit 0
 

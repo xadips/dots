@@ -144,7 +144,7 @@ echo -e "\n### Installing packages"
 pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs \ 
 efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools \
     git reflector bluez bluez-utils cups btrfs-progs base-devel \
-    openssh zsh inotify-tools yadm terminus-font realtime-privileges
+    openssh zsh inotify-tools yadm terminus-font realtime-privileges plymouth
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
@@ -159,7 +159,7 @@ cat <<EOF >/mnt/etc/mkinitcpio.conf
 MODULES=()
 BINARIES=(setfont)
 FILES=()
-HOOKS=(base consolefont udev autodetect kms modconf block filesystems keyboard grub-btrfs-overlayfs)
+HOOKS=(base consolefont udev plymouth autodetect kms modconf block filesystems keyboard grub-btrfs-overlayfs)
 EOF
 arch-chroot /mnt mkinitcpio -p linux-zen
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
