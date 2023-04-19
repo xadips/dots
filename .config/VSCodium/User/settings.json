@@ -1,8 +1,8 @@
 {
-  "editor.fontFamily": "Fira Code",
-  "terminal.integrated.fontFamily": "monospace",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 12,
+  "editor.fontFamily": "BlexMono Nerd Font",
+  "terminal.integrated.fontFamily": "BlexMono Nerd Font",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 13,
   "omnisharp.useGlobalMono": "always",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
