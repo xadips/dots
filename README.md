@@ -5,10 +5,11 @@
 - Update Documentation
 - Update kitty.conf
 - Update hyprland bindings
-- Export gtk themes figure out how to set theme via qt5ct qt6ct
 - Configure waybar
 - Configure rofi wifi, bluetooth selection
 - Make matching colors in all configs
+- Add dunst config
+- Review missing packages
 
 ## Kickstarting
 
@@ -24,3 +25,8 @@
 ```
 bash <(curl -sL ks.rvq.lt)
 ```
+
+## After install
+
+- Import firefox profile via sync
+- Set keyboard in waybar config via `hyprctl devices` see waybar gh wiki hyprland module for more info
