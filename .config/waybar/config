@@ -11,10 +11,12 @@
     "modules-center": [],
     "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
+      "all-outputs": true,
       "on-click": "activate"
     },
     "hyprland/window": {
-        "format": "{}"
+        "format": "{}",
+        "separate-outputs": true
     },
     "tray": {
         "spacing": 10
