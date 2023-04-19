@@ -10,6 +10,7 @@
 - Make matching colors in all configs
 - Add dunst config
 - Review missing packages
+- Implement lock screen
 
 ## Kickstarting
 

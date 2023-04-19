@@ -24,7 +24,7 @@ systemctl_enable() {
 }
 
 # Installing missing Arch repo packages
-sudo pacman -Syu --noconfirm --needed snapper inetutils xdg-utils xdg-user-dirs ydotool \ 
+sudo pacman -Syu --noconfirm --needed snapper inetutils xdg-utils xdg-user-dirs ydotool cronie \ 
 pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber easyeffects helvum \ 
 mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader \ 
 zsh-completions zsh-syntax-highlighting zsh-theme-powerlevel10k hyprland xorg-xwayland \
@@ -71,6 +71,10 @@ sudo bash -c "/home/$user/init.sh"
 # giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs samba dosbox
 # Steam
 # ttf-liberation lib32-systemd steam proton-ge-custom-bin
+# Discord
+# noto-fonts-emoji discord-canary-electron-bin discord-canary-update-skip-git
+# For android
+# android-tools
 
 echo "==========================="
 echo "Setting up user dotfiles..."
