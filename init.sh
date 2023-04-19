@@ -2,6 +2,9 @@
 
 set -e
 exec 2> >(while read line; do echo -e "\e[01;31m$line\e[0m"; done)
+
+export SNAP_PAC_SKIP=y
+
 user="spidax"
 script_name="$(basename "$0")"
 dotfiles_dir="$(
