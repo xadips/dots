@@ -1,0 +1,121 @@
+{
+    "height": 30,
+    "layer": "top",
+    "position" : "top",
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+    "spacing": 5,
+    "modules-left": ["wlr/workspaces", "cpu", "memory", "disk"],
+    "modules-center": [],
+    "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
+    "wlr/workspaces": {
+      "on-click": "activate"
+    },
+    "hyprland/window": {
+        "format": "{}"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "<span color='#bf616a'>  </span>{:%a %b %d}",
+        "format-alt": "<span color='#bf616a'> </span>{:%I:%M %p}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "cpu": {
+      "interval": 10,
+      "format": "󰻠 {}%",
+      "max-length": 10,
+      "on-click": ""
+    },
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_free}%",
+        "path": "/"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "format-alt":" {used:0.1f}G",
+        "max-length": 10
+    },
+    "backlight": {
+        "device": "DP-1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-click": ""
+    },
+    "network": {
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-disconnected": "睊",
+        "format-ethernet": " wired",
+        "format-disconnected": "Disconnected  ",
+        "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "  {volume}%",
+        "format-bluetooth-muted": " ",
+        "format-muted": "婢",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume}% ",
+        "format-muted": "󰝟",
+        "on-click": "helvum",
+        "format-icons": ["", "", ""]
+    },
+
+    "bluetooth": {
+        "on-click": "~/.config/waybar/scripts/rofi-bluetooth &",
+        "format": " {status}"
+    },
+
+    "battery": {
+      "bat": "BAT0",
+      "adapter": "ADP0",
+      "interval": 60,
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      "max-length": 20,
+      "format": "{icon} {capacity}%",
+      "format-warning": "{icon} {capacity}%",
+      "format-critical": "{icon} {capacity}%",
+      "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
+      "format-plugged": "  {capacity}%",
+      "format-alt": "{icon} {time}",
+      "format-full": "  {capacity}%",
+      "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    "hyprland/language": {
+        "format": "{}",
+        "format-us": "us",
+        "format-en": "us",
+        "format-lt": "lt"
+    },
+
+   
+    "custom/power-menu": {
+        "format": " <span color='#6a92d7'>⏻ </span>",
+        "on-click": "bash ~/.config/waybar/scripts/power-menu/powermenu.sh"
+    }, 
+    "custom/launcher": {
+        "format": " <span color='#6a92d7'> </span>",
+        "on-click": "rofi -show drun"
+    }
+}
