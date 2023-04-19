@@ -30,7 +30,7 @@ mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan
 zsh-completions zsh-syntax-highlighting zsh-theme-powerlevel10k hyprland xorg-xwayland \
     xdg-desktop-portal-hyprland polkit-kde-agent qt5-wayland qt6-wayland \
     rsync kitty neofetch snap-pac keychain kernel-modules-hook dunst ripgrep \ 
-bat yt-dlp mpv gnupg firefox thunar zathura zathura-pdf-mupdf zathura-djvu udiskie hyprpaper imv libnotify \
+bat yt-dlp mpv gnupg firefox thunar zathura zathura-pdf-mupdf zathura-djvu udiskie hyprpaper swaylock imv libnotify \
     wl-clipboard qt5ct qt6ct kvantum-theme-materia materia-theme-gtk papirus-icon-theme
 
 # Setting up ssh and gpg keys
