@@ -76,6 +76,7 @@ copy "etc/systemd/system/getty@tty1.service.d/activate-numlock.conf"
 copy "etc/systemd/system/getty@tty1.service.d/override.conf"
 copy "etc/xdg/reflector/reflector.conf"
 copy "etc/plymouth/plymouthd.conf"
+copy "etc/updatedb.conf"
 
 echo ""
 echo "==================================="
