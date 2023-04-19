@@ -160,6 +160,7 @@ MODULES=()
 BINARIES=(setfont)
 FILES=()
 HOOKS=(base consolefont udev plymouth autodetect kms modconf block filesystems keyboard grub-btrfs-overlayfs)
+COMPRESSION_OPTIONS=(-v -5 --long)
 EOF
 arch-chroot /mnt mkinitcpio -p linux-zen
 arch-chroot /mnt grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
