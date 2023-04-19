@@ -7,8 +7,8 @@ export XDG_CACHE_HOME=$HOME/.cache
 
 # editor
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="vim"
+export VISUAL="vim"
 export GRIMBLAST_EDITOR=imv
 export PARU_CONF=$XDG_CONFIG_HOME/paru/paru.conf
 # Proton
