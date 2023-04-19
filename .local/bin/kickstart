@@ -60,6 +60,9 @@ get_choice() {
     dialog --clear --stdout --backtitle "$BACKTITLE" --title "$title" --menu "$description" 0 0 0 "${options[@]}"
 }
 
+echo -e "\n### Starting pacman-init just in case"
+systemctl start pacman-init.service
+
 echo -e "\n### Checking UEFI boot mode"
 if [ ! -f /sys/firmware/efi/fw_platform_size ]; then
     echo >&2 "You must boot in UEFI mode to continue"
