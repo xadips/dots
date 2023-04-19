@@ -141,11 +141,15 @@ mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font realtime-privileges
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs \ 
+efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools \
+    git reflector bluez bluez-utils cups btrfs-progs base-devel \
+    openssh zsh inotify-tools yadm terminus-font realtime-privileges
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
 echo "${hostname}" >/mnt/etc/hostname
+echo "en_US.UTF-8 UTF-8" >>/mnt/etc/locale.gen
 echo "en_GB.UTF-8 UTF-8" >>/mnt/etc/locale.gen
 ln -sf /usr/share/zoneinfo/Europe/Vilnius /mnt/etc/localtime
 arch-chroot /mnt locale-gen
