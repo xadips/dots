@@ -39,6 +39,7 @@ eval "$(dircolors -b $ZDOTDIR/dircolors)"
 # | PROMPT |
 # +--------+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source $ZDOTDIR/.p10k.zsh
 
 plugins=()
