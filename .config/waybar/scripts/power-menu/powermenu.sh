@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Current Theme
 dir="~/.config/waybar/scripts/power-menu/"
@@ -9,13 +9,16 @@ uptime="$(uptime -p | sed -e 's/up //g')"
 host=$(cat /etc/hostname)
 
 # Options
-shutdown='\uf011 Shutdown'
-reboot='\uf1da Reboot'
-lock='\uf023 Lock'
-suspend='\uf1b9  Suspend'
-logout='\uf236  Logout'
-yes='\ufb4b Yes'
-no='\ufb4a No'
+shutdown=' Shutdown'
+reboot=' Reboot'
+lock=' Lock'
+suspend='  Suspend'
+logout='  Logout'
+yes='וֹ Yes'
+no='תּ No'
+
+echo "$yes"
+echo "$no"
 
 # Rofi CMD
 rofi_cmd() {
@@ -57,21 +60,9 @@ run_cmd() {
         elif [[ $1 == '--reboot' ]]; then
             systemctl reboot
         elif [[ $1 == '--suspend' ]]; then
-            mpc -q pause
-            amixer set Master mute
             systemctl suspend
         elif [[ $1 == '--logout' ]]; then
-            if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-                openbox --exit
-            elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-                bspc quit
-            elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-                i3-msg exit
-            elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-                qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-            elif [[ "$DESKTOP_SESSION" == 'Hyprland' ]]; then
-                hyprctl dispatch exit 1
-            fi
+               hyprctl dispatch exit 1
         fi
     else
         exit 0
@@ -88,13 +79,7 @@ $reboot)
     run_cmd --reboot
     ;;
 $lock)
-    if [[ -x '/usr/bin/betterlockscreen' ]]; then
-        betterlockscreen -l
-    elif [[ -x '/usr/bin/i3lock' ]]; then
-        i3lock
-    elif [[ -x '/usr/bin/Hyprland' ]]; then
         swaylock
-    fi
     ;;
 $suspend)
     run_cmd --suspend
