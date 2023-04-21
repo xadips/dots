@@ -11,7 +11,7 @@
     "modules-center": [],
     "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
-      "all-outputs": true,
+      "all-outputs": false,
       "on-click": "activate"
     },
     "hyprland/window": {
