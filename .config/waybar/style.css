@@ -285,17 +285,22 @@
   }
   
   #language {
-    background: #00b093;
-    color: #740864;
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
   }
+
+  #language {
+	background: #97e1ad;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
   
   #keyboard-state {
     background: #97e1ad;
     color: #000000;
-    padding: 0 0px;
+	padding: 0 0px;
     margin: 0 5px;
     min-width: 16px;
   }

@@ -7,7 +7,7 @@
     "margin-bottom": 0,
     "margin-right": 10,
     "spacing": 5,
-    "modules-left": ["wlr/workspaces", "cpu", "memory", "disk"],
+    "modules-left": ["wlr/workspaces", "cpu", "memory"],
     "modules-center": [],
     "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
@@ -107,8 +107,7 @@
     "hyprland/language": {
         "format": "{}",
         "format-us": "us",
-        "format-en": "us",
-        "format-lt": "lt",
+	"format-lt": "lt",
     	"keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
     },
 
