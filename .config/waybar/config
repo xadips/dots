@@ -22,8 +22,8 @@
         "spacing": 10
     },
     "clock": {
-        "format": "<span color='#bf616a'>  </span>{:%a %b %d}",
-        "format-alt": "<span color='#bf616a'> </span>{:%I:%M %p}",
+        "format": "<span color='#bf616a'> </span>{:%H:%M}",
+        "format-alt": "<span color='#bf616a'>  </span>{:%a %b %d}",
         "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
 
@@ -107,7 +107,7 @@
     "hyprland/language": {
         "format": "{}",
         "format-us": "us",
-	"format-lt": "lt",
+	    "format-lt": "lt",
     	"keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
     },
 
