@@ -1,15 +1,15 @@
 #!/bin/zsh
 
 down() {
-    volume = $(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}' | sed 's/.*\.//')
     wpctl set-volume @DEFAULT_SINK@ 5%-
-    dunstify -a "Volume" "Volume Down : $(volume)%" -i audio-volume-low-symbolic -r 2593 -u normal
+    volume=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}' | sed 's/.*\.//')
+    dunstify -a "Volume" "Volume Down : $volume%" -r 2593 -u normal
 }
 
 up() {
-    volume = wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}' | sed 's/.*\.//'
     wpctl set-volume @DEFAULT_SINK@ 5%+
-    dunstify -a "Volume" "Volume Up : $(volume)%" -i audio-volume-low-symbolic -r 2593 -u normal
+    volume=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}' | sed 's/.*\.//')
+    dunstify -a "Volume" "Volume Up : $volume" -r 2593 -u normal
 }
 
 mute() {
