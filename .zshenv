@@ -9,8 +9,8 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 # editor
 
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export GRIMBLAST_EDITOR=imv
 export PARU_CONF=$XDG_CONFIG_HOME/paru/paru.conf
 # Proton

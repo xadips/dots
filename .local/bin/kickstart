@@ -144,7 +144,7 @@ mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware vim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font realtime-privileges plymouth
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware neovim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font realtime-privileges plymouth
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
