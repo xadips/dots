@@ -46,7 +46,7 @@ git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si --noconfirm --needed
 #yes | paru -S --nocheck --skipreview ffmpeg-obs
-paru -S --noconfirm --needed --nocheck --skipreview ttf-blex-nerd-font-git snapper-rollback waybar-hyprland-git vscodium-bin vscodium-bin-marketplace vscodium-bin-features grimblast-git wl-clip-persist-git youtube-music-bin obs-studio obs-gstreamer obs-vkcapture vkbasalt ventoy-bin proton-ge-custom-bin discord-canary-electron-bin discord-canary-update-skip-git mangohud-git gamemode gamescope
+paru -S --noconfirm --needed --nocheck --skipreview ttf-blex-nerd-font-git snapper-rollback waybar-hyprland-git vscodium-bin vscodium-bin-marketplace vscodium-bin-features grimblast-git wl-clip-persist-git youtube-music-bin obs-studio obs-gstreamer obs-vkcapture vkbasalt ventoy-bin proton-ge-custom-bin webcord-bin discord-canary-update-skip-git mangohud gamemode gamescope hyprsome-git wl-clip-persist-git
 cd ..
 rm -rf paru-bin
 bash -c "/home/$user/.config/VSCodium/User/extension-install"
