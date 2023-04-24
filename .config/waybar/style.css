@@ -285,12 +285,6 @@
   }
   
   #language {
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-  }
-
-  #language {
 	background: #97e1ad;
     border-radius: 20px;
     padding-left: 10px;
