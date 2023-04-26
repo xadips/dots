@@ -105,10 +105,10 @@
     },
 
     "hyprland/language": {
-        "format": "test {}",
-        "format-us": "us",
+        "format": "{}",
+        "format-en": "us",
         "format-lt": "lt",
-        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
+        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard-1"
     },
 
    

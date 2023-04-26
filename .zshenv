@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/local/bin:/home/spidax/.local/bin:$PATH
+export PATH=/usr/bin/core_perl/:$HOME/.local/bin:/usr/bin:/usr/local/bin:$PATH
 # XDG
 
 export XDG_CONFIG_HOME=$HOME/.config
