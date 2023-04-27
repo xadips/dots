@@ -33,44 +33,26 @@
       "max-length": 10,
       "on-click": ""
     },
+
     "disk": {
         "interval": 30,
         "format": "󰋊 {percentage_free}%",
         "path": "/"
     },
+
     "memory": {
         "interval": 30,
         "format": " {}%",
         "format-alt":" {used:0.1f}G",
         "max-length": 10
     },
-    "backlight": {
-        "device": "DP-1",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-click": ""
-    },
+    
     "network": {
         "format-wifi": "󰖩 {signalStrength}%",
         "format-disconnected": "睊",
         "format-ethernet": " wired",
         "format-disconnected": "Disconnected  ",
         "on-click": "bash ~/.config/waybar/scripts/rofi-wifi-menu.sh"
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "  {volume}%",
-        "format-bluetooth-muted": " ",
-        "format-muted": "婢",
-        "format-icons": {
-            "headphone": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
     },
 
     "wireplumber": {
@@ -85,30 +67,12 @@
         "format": " {status}"
     },
 
-    "battery": {
-      "bat": "BAT0",
-      "adapter": "ADP0",
-      "interval": 60,
-      "states": {
-          "warning": 30,
-          "critical": 15
-      },
-      "max-length": 20,
-      "format": "{icon} {capacity}%",
-      "format-warning": "{icon} {capacity}%",
-      "format-critical": "{icon} {capacity}%",
-      "format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
-      "format-plugged": "  {capacity}%",
-      "format-alt": "{icon} {time}",
-      "format-full": "  {capacity}%",
-      "format-icons": [" ", " ", " ", " ", " "]
-    },
 
     "hyprland/language": {
         "format": "{}",
         "format-en": "us",
         "format-lt": "lt",
-        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard-1"
+        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
     },
 
    

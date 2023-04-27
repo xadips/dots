@@ -1,0 +1,7 @@
+[Default Applications]
+inode/directory=thunar.desktop
+application/zip=org.xarchiver.desktop
+video/mp4=mpv.desktop
+image/jpeg=imv.desktop
+image/png=imv.desktop
+application/pdf=org.pwmt.zathura.desktop
