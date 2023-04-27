@@ -1,5 +1,9 @@
 fpath+=($ZDOTDIR/plugins $fpath)
 
+path+=('/usr/bin/core_perl')
+path+=('/home/spidax/.local/bin')
+
+
 # +------------+
 # | NAVIGATION |
 # +------------+

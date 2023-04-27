@@ -8,7 +8,7 @@
     "margin-right": 10,
     "spacing": 5,
     "modules-left": ["wlr/workspaces", "cpu", "memory"],
-    "modules-center": [],
+    "modules-center": ["custom/youtube-music"],
     "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
       "all-outputs": false,
@@ -83,5 +83,12 @@
     "custom/launcher": {
         "format": " <span color='#6a92d7'> </span>",
         "on-click": "rofi -show drun"
+    },
+    "custom/youtube-music": {
+        "format": "{icon} {}",
+        "format-icons": "󰎆",
+        "interval": 1,
+        "exec": "playerctl -p youtube-music metadata title"
+
     }
 }
