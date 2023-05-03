@@ -135,12 +135,12 @@ btrfs su cr /mnt/@snapshots
 btrfs su cr /mnt/@var_log
 umount /mnt
 
-mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@ "${fpart_root}" /mnt
+mount -o noatime,compress-force=zstd,space_cache=v2,subvol=@ "${fpart_root}" /mnt
 mkdir -p /mnt/{boot/efi,home,.snapshots,var/log}
 
-mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@home "${fpart_root}" /mnt/home
-mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@snapshots "${fpart_root}" /mnt/.snapshots
-mount -o noatime,nodiratime,compress-force=zstd,space_cache=v2,subvol=@var_log "${fpart_root}" /mnt/var/log
+mount -o noatime,compress-force=zstd,space_cache=v2,subvol=@home "${fpart_root}" /mnt/home
+mount -o noatime,compress-force=zstd,space_cache=v2,subvol=@snapshots "${fpart_root}" /mnt/.snapshots
+mount -o noatime,compress-force=zstd,space_cache=v2,subvol=@var_log "${fpart_root}" /mnt/var/log
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"

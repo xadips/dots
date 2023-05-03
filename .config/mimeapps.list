@@ -5,3 +5,10 @@ video/mp4=mpv.desktop
 image/jpeg=imv.desktop
 image/png=imv.desktop
 application/pdf=org.pwmt.zathura.desktop
+application/x-zerosize=nvim.desktop
+application/x-pef-executable=wine.desktop
+
+[Added Associations]
+application/x-zerosize=nvim.desktop;
+application/x-cd-image=xarchiver.desktop;
+application/x-pef-executable=wine.desktop;

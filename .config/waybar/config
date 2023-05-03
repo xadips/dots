@@ -71,8 +71,7 @@
     "hyprland/language": {
         "format": "{}",
         "format-en": "us",
-        "format-lt": "lt",
-        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
+        "format-lt": "lt"
     },
 
    
