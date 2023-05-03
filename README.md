@@ -31,3 +31,16 @@ bash <(curl -sL ks.rvq.lt)
 
 - Import firefox profile via sync
 - Set keyboard in waybar config via `hyprctl devices` see waybar gh wiki hyprland module for more info
+
+# Single drive failure in RAID1
+
+Might need -f flags for some of the commands if system is online
+
+```
+mount -o rw,degraded,subvol=@ /dev/nvmeXn1p1 /new_root
+exit
+btrfs balance start -dconvert=single -mconvert=single / -f
+btrfs device delete missing /
+btrfs device add /dev/nvmeXn1p2 /
+btrfs balance start -dconvert=raid1,soft =mconvert=raid1,soft /
+```
