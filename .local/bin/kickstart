@@ -144,7 +144,7 @@ mount -o noatime,compress-force=zstd,space_cache=v2,subvol=@var_log "${fpart_roo
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware neovim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font realtime-privileges plymouth
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware neovim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font plymouth
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
@@ -168,7 +168,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 [[ "$raid" == "Yes" ]] && dd if="${fpart_boot}" of="${spart_boot}" && arch-chroot /mnt efibootmgr --create --disk "${sdevice}" --part 1 -w --label GRUB2 --loader '\EFI\GRUB\grubx64.efi'
 
 echo -e "\n### Creating user"
-arch-chroot /mnt useradd -mG wheel,network,video,input,realtime -s /usr/bin/zsh "$user"
+arch-chroot /mnt useradd -mG wheel,network,video,input -s /usr/bin/zsh "$user"
 arch-chroot /mnt chsh -s /usr/bin/zsh
 echo "$user:$password" | arch-chroot /mnt chpasswd
 echo "$user ALL=(ALL) ALL" | arch-chroot /mnt bash -c "EDITOR='tee -a' visudo"

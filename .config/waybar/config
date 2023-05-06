@@ -8,7 +8,7 @@
     "margin-right": 10,
     "spacing": 5,
     "modules-left": ["wlr/workspaces", "cpu", "memory"],
-    "modules-center": ["custom/youtube-music"],
+    "modules-center": [],
     "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
       "all-outputs": false,
