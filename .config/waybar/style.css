@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: BlexMono Nerd Font;
-    font-size: 17px;
+    font-family: JetBrainsMono Nerd Font ;
+    font-size: 15px;
   }
   
   window#waybar {
