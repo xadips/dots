@@ -125,7 +125,6 @@
   "breadcrumbs.enabled": true,
   "workbench.statusBar.visible": true,
   "files.autoSaveDelay": 60000,
-  "editor.formatOnSave": true,
   "explorer.confirmDelete": false,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
