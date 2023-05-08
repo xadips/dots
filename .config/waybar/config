@@ -8,7 +8,7 @@
     "margin-right": 10,
     "spacing": 5,
     "modules-left": ["wlr/workspaces", "cpu", "memory"],
-    "modules-center": [],
+    "modules-center": ["custom/youtube-music"],
     "modules-right": ["tray", "network", "custom/keymap", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
       "all-outputs": false,
@@ -87,7 +87,8 @@
         "format": "{icon} {}",
         "format-icons": "󰎆",
         "interval": 1,
-        "exec": "playerctl -p youtube-music metadata title"
+        "exec": "playerctl -p youtube-music metadata title",
+        "exec-if": "playerctl -p youtube-music metadata"
 
     },
 
