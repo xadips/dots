@@ -85,7 +85,7 @@ copy "etc/snapper/configs/root" 640 etc/snapper/configs/root
 copy "etc/conf.d/snapper" 644 etc/conf.d/snapper
 # copy "etc/pacman.d/hooks"
 copy "etc/systemd/system/getty@tty1.service.d/activate-numlock.conf"
-#copy "etc/systemd/system/getty@tty1.service.d/skip-prompt.conf"
+copy "etc/systemd/system/getty@tty1.service.d/skip-prompt.conf"
 copy "etc/xdg/reflector/reflector.conf"
 copy "etc/plymouth/plymouthd.conf"
 copy "etc/updatedb.conf"

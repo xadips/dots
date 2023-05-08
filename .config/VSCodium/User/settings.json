@@ -151,5 +151,6 @@
   "C_Cpp.clang_format_style": "Google",
   "kite.showWelcomeNotificationOnStartup": false,
   "haskell.manageHLS": "GHCup",
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "workbench.startupEditor": "none"
 }
