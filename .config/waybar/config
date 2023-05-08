@@ -9,7 +9,7 @@
     "spacing": 5,
     "modules-left": ["wlr/workspaces", "cpu", "memory"],
     "modules-center": [],
-    "modules-right": ["tray", "network", "hyprland/language", "wireplumber", "clock", "custom/power-menu"],
+    "modules-right": ["tray", "network", "custom/keymap", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
       "all-outputs": false,
       "on-click": "activate"
@@ -70,7 +70,8 @@
     "hyprland/language": {
         "format": "{}",
         "format-en": "us",
-        "format-lt": "lt"
+        "format-lt": "lt",
+        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard-1"
     },
 
    
@@ -88,5 +89,11 @@
         "interval": 1,
         "exec": "playerctl -p youtube-music metadata title"
 
+    },
+
+    "custom/keymap": {
+        "format": "{}",
+        "exec": "bash ~/.config/waybar/scripts/keymap.sh",
+        "interval": 1
     }
 }
