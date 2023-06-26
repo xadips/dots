@@ -86,9 +86,9 @@
     "custom/youtube-music": {
         "format": "{icon} {}",
         "format-icons": "󰎆",
-        "interval": 1,
+        "interval": 3,
         "exec": "playerctl -p youtube-music metadata title",
-        "exec-if": "playerctl -p youtube-music metadata"
+        "exec-if": "pgrep electron"
 
     },
 
