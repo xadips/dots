@@ -44,3 +44,8 @@ btrfs device delete missing /
 btrfs device add /dev/nvmeXn1p2 /
 btrfs balance start -dconvert=raid1,soft =mconvert=raid1,soft /
 ```
+
+Asus intel nic bug fix 
+```
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet pcie_port_pm=off pcie_aspm.policy=performance"grub-mkconfig -o /boot/grub/grub.cfg
+```
