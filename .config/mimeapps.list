@@ -13,3 +13,4 @@ x-scheme-handler/ror2mm=r2modman.desktop
 application/x-zerosize=nvim.desktop;
 application/x-cd-image=xarchiver.desktop;
 application/x-pef-executable=wine.desktop;
+application/xml=wine-extension-txt.desktop;
