@@ -7,9 +7,9 @@
     "margin-bottom": 0,
     "margin-right": 10,
     "spacing": 5,
-    "modules-left": ["wlr/workspaces", "cpu", "memory"],
+    "modules-left": ["hyprland/workspaces", "cpu", "memory"],
     "modules-center": ["custom/youtube-music"],
-    "modules-right": ["tray", "network", "custom/keymap", "wireplumber", "clock", "custom/power-menu"],
+    "modules-right": ["tray", "custom/vpn", "network", "custom/keymap", "wireplumber", "clock", "custom/power-menu"],
     "wlr/workspaces": {
       "all-outputs": false,
       "on-click": "activate"
@@ -68,10 +68,9 @@
 
 
     "hyprland/language": {
-        "format": "{}",
         "format-en": "us",
         "format-lt": "lt",
-        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard-1"
+        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
     },
 
    
@@ -88,8 +87,15 @@
         "format-icons": "󰎆",
         "interval": 3,
         "exec": "playerctl -p youtube-music metadata title",
-        "exec-if": "pgrep electron"
+        "exec-if": "[[ $(playerctl -p youtube-music status) = 'Playing' ]]"
 
+    },
+
+    "custom/vpn": {
+        "format": "{}",
+        "exec": "bash ~/.config/waybar/scripts/vpn.sh",
+        "signal": 8,
+        "interval": "once"
     },
 
     "custom/keymap": {

@@ -94,3 +94,4 @@ bindkey -M vicmd v edit-command-line
 source $HOME/.config/aliases
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+eval "$(~/.rbenv/bin/rbenv init - zsh)"

@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: BlexMono Nerd Font Mono;
-    font-size: 16px;
+    font-size: 18px;
   }
   
   window#waybar {
@@ -71,6 +71,7 @@
   #custom-power-menu,
   #custom-spotify,
   #custom-youtube-music,
+  #custom-vpn,
   #custom-weather,
   #custom-weather.severe,
   #custom-weather.sunnyDay,
