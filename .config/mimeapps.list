@@ -8,9 +8,13 @@ application/pdf=org.pwmt.zathura.desktop
 application/x-zerosize=nvim.desktop
 application/x-pef-executable=wine.desktop
 x-scheme-handler/ror2mm=r2modman.desktop
+application/x-shellscript=kitty-open.desktop
 
 [Added Associations]
 application/x-zerosize=nvim.desktop;
 application/x-cd-image=xarchiver.desktop;
 application/x-pef-executable=wine.desktop;
 application/xml=wine-extension-txt.desktop;
+application/x-shellscript=wine-extension-txt.desktop;kitty-open.desktop;
+application/vnd.microsoft.portable-executable=wine.desktop;
+application/x-msdownload=wine.desktop;

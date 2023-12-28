@@ -17,9 +17,9 @@ alias l='ls -CF'
 # | cp |
 # +----+
 
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -i'
+alias cp='cp --reflink=auto -v'
+alias mv='mv'
+alias rm='rm'
 
 # +----+
 # | cd |
@@ -69,5 +69,5 @@ alias ssh_mif="ssh -i .ssh/id_rsa -L 5555:linux:3389 ricu6580@uosis.mif.vu.lt"
 alias ssh_cluster="ssh ricu6580@cluster.mif.vu.lt"
 alias ssh_kvm="ssh -p 42069 root@spidax.xyz"
 alias ssh_kvm2="ssh -p 42069 root@node2.spidax.xyz"
-alias ssh_pi="TERM=xterm-256color && ssh pi@192.168.1.5"
+#alias ssh_pi="TERM=xterm-256color && ssh pi@192.168.1.5"
 alias ssh_server="ssh laimas@192.168.1.6 -p 9889"

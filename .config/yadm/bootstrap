@@ -46,7 +46,7 @@ git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si --noconfirm --needed
 #yes | paru -S --nocheck --skipreview ffmpeg-obs
-paru -S --noconfirm --needed --nocheck --skipreview snapper-rollback vscodium-bin vscodium-bin-marketplace vscodium-bin-features grimblast-git youtube-music-bin obs-studio obs-gstreamer obs-vkcapture ventoy-bin proton-ge-custom-bin webcord-bin gamemode gamescope hyprsome-git mangohud-git wlsunset clipmon-git wine-wl-git winetricks
+paru -S --noconfirm --needed --nocheck --skipreview snapper-rollback vscodium-bin vscodium-bin-marketplace vscodium-bin-features grimblast-git youtube-music-bin obs-studio obs-vkcapture proton-ge-custom-bin vencord-desktop-bin gamemode gamescope wlsunset wl-clip-persist-git
 cd ..
 rm -rf paru-bin
 bash -c "/home/$user/.config/VSCodium/User/extension-install"
@@ -69,8 +69,11 @@ else
     systemctl_enable "polkit-kde.service"
     systemctl_enable "udiskie.service"
     systemctl_enable "waybar.service"
-    systemctl_enable "clipmon.service"
+    systemctl_enable "wl-clip-persist.service"
 fi
+
+yes | hyprpm add https://github.com/Duckonaut/split-monitor-workspaces
+hyprpm enable split-monitor-workspaces
 
 echo ""
 echo "======================================="

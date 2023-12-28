@@ -88,7 +88,7 @@
   "telemetry.enableTelemetry": false,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Community Material Theme Darker High Contrast",
-  "window.menuBarVisibility": "toggle",
+  "window.menuBarVisibility": "visible",
   "editor.lineNumbers": "relative",
   "vim.smartRelativeLine": true,
   "gitlens.modes": {
@@ -172,5 +172,19 @@
     "codeLens": true,
     "definition": true,
     "workspaceSymbol": true
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "editor.rulers": [
+      120
+    ],
+    "editor.semanticHighlighting.enabled": true
   }
 }

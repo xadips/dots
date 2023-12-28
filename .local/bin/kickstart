@@ -144,7 +144,7 @@ mount -o noatime,compress-force=zstd,space_cache=v2,subvol=@var_log "${fpart_roo
 mount "${fpart_boot}" /mnt/boot/efi
 
 echo -e "\n### Installing packages"
-pacstrap /mnt base linux-zen linux-zen-headers linux-firmware neovim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font plymouth
+pacstrap /mnt base linux-zen linux-zen-headers linux-firmware neovim amd-ucode grub grub-btrfs efibootmgr networkmanager dialog wpa_supplicant mtools dosfstools git reflector bluez bluez-utils cups btrfs-progs base-devel openssh zsh inotify-tools yadm terminus-font 
 
 echo "FONT=$font" >/mnt/etc/vconsole.conf
 genfstab -L /mnt >>/mnt/etc/fstab
@@ -156,10 +156,10 @@ arch-chroot /mnt locale-gen
 
 echo -e "\n### Setting up initramfs and boot"
 cat <<EOF >/mnt/etc/mkinitcpio.conf
-MODULES=()
+MODULES=(btrfs)
 BINARIES=(setfont)
 FILES=()
-HOOKS=(base consolefont udev plymouth autodetect kms modconf block filesystems keyboard grub-btrfs-overlayfs)
+HOOKS=(base udev consolefont autodetect kms modconf keyboard block grub-btrfs-overlayfs)
 COMPRESSION_OPTIONS=(-v -5 --long)
 EOF
 arch-chroot /mnt mkinitcpio -p linux-zen

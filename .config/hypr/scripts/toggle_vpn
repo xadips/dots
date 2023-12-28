@@ -1,0 +1,3 @@
+#!/bin/zsh
+[[ $(nmcli con show --active | grep wg) ]] && nmcli c down wg0 || nmcli c up wg0
+pkill -RTMIN+8 waybar

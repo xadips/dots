@@ -69,7 +69,7 @@ echo "============================"
 copy "etc/pacman.conf" 644 "etc/pacman.conf"
 copy "etc/makepkg.conf" 644 "etc/makepkg.conf"
 copy "etc/mkinitcpio.conf" 644 "etc/mkinitcpio.conf"
-[[ -z "$reverse" ]] && pacman -Syu --noconfirm --needed snapper inetutils rofi xdg-utils xdg-user-dirs ydotool cronie pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber easyeffects lsp-plugins helvum mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader zsh-completions zsh-syntax-highlighting zsh-theme-powerlevel10k hyprland xorg-xwayland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook dunst ripgrep bat yt-dlp mpv gnupg firefox thunar thunar-archive-plugin xarchiver p7zip zip zathura zathura-pdf-mupdf zathura-djvu udiskie hyprpaper swaylock imv libnotify wl-clipboard qt5ct qt6ct kvantum-theme-materia materia-gtk-theme papirus-icon-theme giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs samba dosbox gstreamer-vaapi ttf-liberation lib32-systemd steam noto-fonts-emoji android-tools libreoffice-fresh mlocate imagemagick neovim ttf-ibmplex-mono-nerd qbittorrent waybar
+[[ -z "$reverse" ]] && pacman -Syu --noconfirm --needed snapper inetutils rofi xdg-utils xdg-user-dirs ydotool cronie pipewire pipewire-pulse pipewire-alsa pipewire-jack pipewire-audio wireplumber easyeffects lsp-plugins helvum mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader zsh-completions zsh-syntax-highlighting zsh-theme-powerlevel10k hyprland xorg-xwayland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk polkit-kde-agent qt5-wayland qt6-wayland rsync kitty neofetch snap-pac keychain kernel-modules-hook dunst ripgrep bat yt-dlp mpv gnupg firefox thunar thunar-archive-plugin xarchiver p7zip zip zathura zathura-pdf-mupdf zathura-djvu udiskie hyprpaper swaylock imv libnotify wl-clipboard qt5ct qt6ct kvantum-theme-materia materia-gtk-theme papirus-icon-theme giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs samba dosbox ttf-liberation lib32-systemd steam noto-fonts-emoji android-tools libreoffice-fresh mlocate imagemagick neovim ttf-ibmplex-mono-nerd qbittorrent waybar wine winetricks protontricks mangohud
 
 echo ""
 echo "============================"
@@ -83,11 +83,9 @@ echo "=========================="
 
 copy "etc/snapper/configs/root" 640 etc/snapper/configs/root
 copy "etc/conf.d/snapper" 644 etc/conf.d/snapper
-# copy "etc/pacman.d/hooks"
 copy "etc/systemd/system/getty@tty1.service.d/activate-numlock.conf"
 copy "etc/systemd/system/getty@tty1.service.d/skip-prompt.conf"
 copy "etc/xdg/reflector/reflector.conf"
-copy "etc/plymouth/plymouthd.conf"
 copy "etc/updatedb.conf"
 copy "etc/sysctl.d/20-quiet-printk.conf"
 copy "etc/sysctl.d/90-override.conf"
@@ -96,7 +94,7 @@ copy "etc/sysctl.d/90-override.conf"
 
 echo ""
 echo "==================================="
-echo "Rebuilding initramfs for plymouth..."
+echo "Rebuilding initramfs ..."
 echo "==================================="
 
 mkinitcpio -P
@@ -106,9 +104,6 @@ echo ""
 echo "================================="
 echo "Enabling and starting services..."
 echo "================================="
-
-# Kernel?
-# sysctl --system >/dev/null
 
 systemctl daemon-reload
 systemctl_enable_start "bluetooth.service"
