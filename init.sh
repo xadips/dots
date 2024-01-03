@@ -81,6 +81,7 @@ echo "=========================="
 echo "Setting up /etc configs..."
 echo "=========================="
 
+copy "etc/bluetooth/input.conf" 640 etc/bluetooth/input.conf
 copy "etc/snapper/configs/root" 640 etc/snapper/configs/root
 copy "etc/conf.d/snapper" 644 etc/conf.d/snapper
 copy "etc/systemd/system/getty@tty1.service.d/activate-numlock.conf"
