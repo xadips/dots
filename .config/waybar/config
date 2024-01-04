@@ -1,6 +1,6 @@
 {
     "height": 30,
-    "layer": "bottom",
+    "layer": "top",
     "position" : "top",
     "margin-top": 6,
     "margin-left": 10,
@@ -10,10 +10,6 @@
     "modules-left": ["hyprland/workspaces", "cpu", "memory"],
     "modules-center": ["custom/youtube-music"],
     "modules-right": ["tray", "custom/vpn", "network", "custom/keymap", "wireplumber", "clock", "custom/power-menu"],
-    "wlr/workspaces": {
-      "all-outputs": false,
-      "on-click": "activate"
-    },
     "hyprland/window": {
         "format": "{}",
         "separate-outputs": true
