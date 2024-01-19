@@ -186,5 +186,8 @@
       120
     ],
     "editor.semanticHighlighting.enabled": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

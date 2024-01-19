@@ -5,7 +5,7 @@
   }
   
   window#waybar {
-    background-color: rgba(26, 27, 38, 0);
+    background-color: rgba(3, 3, 3, 0);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: 0.5s;
@@ -65,6 +65,7 @@
   #mode,
   #wireplumber,
   #idle_inhibitor,
+  #workspaces,
   #mpd,
   #bluetooth,
   #custom-hyprPicker,
@@ -87,29 +88,26 @@
     color: #e5e5e5;
     /* color: #bf616a; */
     border-radius: 9.5px;
-    background-color: #1f2530;
+    background-color: rgba(30, 30, 30, 0.98);
   }
   
   #window,
   #workspaces {
     margin: 0 4px;
     border-radius: 7.8px;
-    background-color: #1f2530;
+    padding: 0 0px;
   }
   
   #cpu {
     color: #fb958b;
-    background-color: #1f2530;
   }
   
   #memory {
     color: #ebcb8b;
-    background-color: #1f2530;
   }
   
   #custom-power-menu {
     border-radius: 9.5px;
-    background-color: #1b242b;
     border-radius: 7.5px;
     padding: 0 5px;
   }

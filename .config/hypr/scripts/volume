@@ -7,7 +7,7 @@ down() {
 }
 
 up() {
-    wpctl set-volume @DEFAULT_SINK@ 5%+
+    wpctl set-volume @DEFAULT_SINK@ 5%+ -l 1.0
     volume=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}' | sed 's/.*\.//')
     dunstify -a "Volume" "Volume Up : $volume" -r 2593 -u normal
 }
