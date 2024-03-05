@@ -82,8 +82,8 @@
         "format": "{icon} {}",
         "format-icons": "󰎆",
         "interval": 3,
-        "exec": "playerctl -p youtube-music metadata title",
-        "exec-if": "[[ $(playerctl -p youtube-music status) = 'Playing' ]]"
+        "exec": "playerctl -p YoutubeMusic metadata title",
+        "exec-if": "[[ $(playerctl -p YoutubeMusic status) = 'Playing' ]]"
 
     },
 

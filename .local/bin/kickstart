@@ -159,7 +159,7 @@ cat <<EOF >/mnt/etc/mkinitcpio.conf
 MODULES=(btrfs)
 BINARIES=(setfont)
 FILES=()
-HOOKS=(base udev consolefont autodetect kms modconf keyboard block grub-btrfs-overlayfs)
+HOOKS=(base udev consolefont autodetect microcode kms modconf keyboard block grub-btrfs-overlayfs)
 COMPRESSION_OPTIONS=(-v -5 --long)
 EOF
 arch-chroot /mnt mkinitcpio -p linux-zen
