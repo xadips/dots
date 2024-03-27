@@ -9,7 +9,7 @@
     "spacing": 5,
     "modules-left": ["hyprland/workspaces", "cpu", "memory"],
     "modules-center": ["custom/youtube-music"],
-    "modules-right": ["tray", "custom/vpn", "network", "custom/keymap", "wireplumber", "clock", "custom/power-menu"],
+    "modules-right": ["tray", "custom/vpn", "network", "custom/keymap", "wireplumber" , "clock", "custom/power-menu"],
     "hyprland/window": {
         "format": "{}",
         "separate-outputs": true
