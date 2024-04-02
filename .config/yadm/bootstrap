@@ -80,6 +80,10 @@ echo "======================================="
 echo "Finishing various user configuration..."
 echo "======================================="
 
+hyprpm update -f 
+hyprpm add https://github.com/shezdy/hyprsplit -f 
+hyprpm enable hyprsplit -f
+
 mkdir -p /home/$user/Pictures/screenshots
 
 # if is_chroot; then
