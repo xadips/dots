@@ -8,8 +8,8 @@
     "margin-right": 10,
     "spacing": 5,
     "modules-left": ["hyprland/workspaces", "cpu", "memory"],
-    "modules-center": ["custom/youtube-music"],
-    "modules-right": ["tray", "custom/vpn", "network", "custom/keymap", "wireplumber" , "clock", "custom/power-menu"],
+    "modules-center": [],
+    "modules-right": ["tray", "custom/vpn", "network", "hyprland/language", "wireplumber" , "clock", "custom/power-menu"],
     "hyprland/window": {
         "format": "{}",
         "separate-outputs": true
@@ -64,9 +64,7 @@
 
 
     "hyprland/language": {
-        "format-en": "us",
-        "format-lt": "lt",
-        "keyboard-name": "duckychannel-international-co.,-ltd.-ducky-keyboard"
+        "keyboard-name": "monsgeek-monsgeek-keyboard-1"
     },
 
    

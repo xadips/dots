@@ -154,7 +154,9 @@
   "window.zoomLevel": 1,
   "workbench.startupEditor": "none",
   "rubyLsp.formatter": "rubocop",
-  "rubyLsp.rubyVersionManager": "none",
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "none"
+  },
   "rubyLsp.enabledFeatures": {
     "codeActions": true,
     "diagnostics": true,
@@ -189,5 +191,6 @@
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
+  },
+  "github.copilot.editor.enableAutoCompletions": true
 }
