@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 alias bigf= 'find / -xdev -type f -size +500M' # display "big" files > 500M
 
@@ -65,10 +65,8 @@ alias gclean="git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n
 alias gblog="git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'" # git log for each branches
 alias gsub="git submodule update --remote"                                                                                                                                                                                                                                     # pull submodules
 
-alias ssh_mif="ssh -i .ssh/id_rsa -L 5555:linux:3389 ricu6580@uosis.mif.vu.lt"
-alias ssh_cluster="ssh ricu6580@cluster.mif.vu.lt"
-alias ssh_kvm="ssh -p 42069 root@spidax.xyz"
-alias ssh_kvm2="ssh -p 42069 root@node2.spidax.xyz"
-#alias ssh_pi="TERM=xterm-256color && ssh pi@192.168.1.5"
-alias ssh_server="ssh laimas@192.168.1.6 -p 9889"
-alias bg_audio="wpctl set-volume @DEFAULT_SINK@ 1.8"
+alias ssh_server="ssh citrina"
+
+warframe_cp() {
+	wl-paste -t text -w sh -c 'v=$(cat); cmp -s <(xclip -selection clipboard -o)  <<< "$v" || xclip -selection clipboard <<< "$v"'
+}

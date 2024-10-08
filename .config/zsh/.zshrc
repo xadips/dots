@@ -53,6 +53,7 @@ plugins=()
 # +----------+
 
 eval $(keychain --agents 'ssh' --eval --quiet id_rsa)
+systemctl --user import-environment SSH_AUTH_SOCK
 
 # +------------+
 # | COMPLETION |
