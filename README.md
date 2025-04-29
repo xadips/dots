@@ -21,12 +21,6 @@
 - Use username `spidax` to automatically clone dotfiles and further configure your system
 - If using my username with init.sh remove the lines regarding decryption, ssh ang gpg configuration it will fail to decrypt without my password (left in for testing purposes for now)
 
-### Initating kickstart on archiso
-
-```
-bash <(curl -sL ks.rvq.lt)
-```
-
 ## After install
 
 - Import firefox profile via sync
