@@ -1,0 +1,14 @@
+#!/usr/bin/zsh
+HEADPHONES=$(pactl --format json list sinks | jq -r '.[] | select(.description=="iFi (by AMR) HD USB Audio Analog Stereo") | .name')
+SPEAKERS=$(pactl --format json list sinks | jq -r '.[] | select(.description=="USB Audio Speakers") | .name')
+
+CURRENT_SINK=$(pactl get-default-sink)
+
+if [[ "$CURRENT_SINK" == "$HEADPHONES" ]]
+then
+	pactl set-default-sink "$SPEAKERS"
+else
+	pactl set-default-sink "$HEADPHONES"
+fi
+
+

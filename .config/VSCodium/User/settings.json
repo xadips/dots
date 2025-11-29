@@ -87,7 +87,7 @@
   "telemetry.enableCrashReporter": false,
   "telemetry.enableTelemetry": false,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Community Material Theme Darker High Contrast",
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
   "window.menuBarVisibility": "visible",
   "editor.lineNumbers": "relative",
   "vim.smartRelativeLine": true,
@@ -192,5 +192,13 @@
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "github.copilot.editor.enableAutoCompletions": true
+  "github.copilot.editor.enableAutoCompletions": true,
+  "editor.language.colorizedBracketPairs": [
+
+  ],
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.inlayHints.padding": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.callArgumentNames": "all",
+  "chat.disableAIFeatures": false
 }

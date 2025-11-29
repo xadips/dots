@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while true; do
+	wpctl status | rg 'USB Audio Front Headphones'
+		if [ $? -eq 0 ]; then
+			kill -SIGUSR2 $(pidof waybar)
+			break
+		fi
+	sleep 1
+done
+			
+

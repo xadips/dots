@@ -70,3 +70,11 @@ alias ssh_server="ssh citrina"
 warframe_cp() {
 	wl-paste -t text -w sh -c 'v=$(cat); cmp -s <(xclip -selection clipboard -o)  <<< "$v" || xclip -selection clipboard <<< "$v"'
 }
+
+#alias sync_valheim_plugins="rsync -r --info=progress2 ~/.config/r2modmanPlus-local/Valheim/profiles/RimtiesNamai/BepInEx/plugins/* citrina:/var/docker/valheim/config/bepinex/plugins"
+#alias sync_valheim_configs="rsync -r --info=progress2 ~/.config/r2modmanPlus-local/Valheim/profiles/RimtiesNamai/BepInEx/config/* citrina:/var/docker/valheim/config/bepinex"
+
+
+#alias sync_spt_backend="rsync -r --info=progress2 ~/Downloads/games/mods/server_pack/* citrina:/var/docker/sptserver/user/mods"
+#alias sync_spt_headless="rsync -r --info=progress2 ~/Downloads/games/mods/headless_mods/* citrina:/var/docker/spt-headless/BepInEx/plugins"
+alias sync_spt_modsync="rsync --info=progress2 ~/Games/spt/modsync.jsonc citrina:/var/docker/sptserver/user/mods/Corter-ModSync/config.jsonc"

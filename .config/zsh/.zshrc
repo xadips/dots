@@ -52,8 +52,20 @@ plugins=()
 # | KEYCHAIN |
 # +----------+
 
-eval $(keychain --agents 'ssh' --eval --quiet id_rsa)
-systemctl --user import-environment SSH_AUTH_SOCK
+# Ensure systemd ssh-agent socket is set
+if [[ -z "$SSH_AUTH_SOCK" ]] || [[ "$SSH_AUTH_SOCK" != "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
+
+# Only run keychain if ssh-agent socket exists
+if [[ -S "$SSH_AUTH_SOCK" ]]; then
+    # Try keychain with retry logic (handles race condition with systemd socket activation)
+    eval $(keychain --eval --quiet --systemd id_rsa 2>/dev/null) || {
+        # If keychain fails, wait a moment and retry (service might still be activating)
+        sleep 0.3
+        eval $(keychain --eval --quiet --systemd id_rsa 2>/dev/null) || true
+    }
+fi
 
 # +------------+
 # | COMPLETION |
